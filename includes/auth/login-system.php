@@ -1,0 +1,42 @@
+<?php
+include("../db.php");
+session_start();
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (isset($_POST["nama"]) && isset($_POST["password"])) {
+        $username = $_POST["nama"];
+        $password = $_POST["password"];
+
+        $stmt = mysqli_prepare($conn, "SELECT * FROM users WHERE nama = ?");
+        mysqli_stmt_bind_param($stmt, "s", $username);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+
+        if ($user = mysqli_fetch_assoc($result)) {
+            if (password_verify($password, $user["password"])) {
+                $_SESSION['login'] = true;
+                $_SESSION['user'] = $user;
+
+                // Redirect berdasarkan role
+                if ($user['role'] === 'admin') {
+                    header("Location: ../../admin/dashboard.php");
+                } elseif ($user['role'] === 'tamu') {
+                    header("Location: ../../landing.php");
+                } else {
+                    header("Location: ../index.php");
+                }
+                exit;
+            } else {
+                echo "Password salah.";
+            }
+        } else {
+            echo "Username tidak ditemukan.";
+        }
+
+        mysqli_stmt_close($stmt);
+        mysqli_close($conn);
+    } else {
+        echo "Mohon isi username dan password.";
+    }
+}
+?>

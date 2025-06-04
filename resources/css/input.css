@@ -1,0 +1,9 @@
+html{
+    scroll-behavior: smooth;
+}
+
+nav ul li a.active {
+    color: #16a34a;
+    transition: color 0.3s ease;
+    border-bottom: 2px solid;
+}
