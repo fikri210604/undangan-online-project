@@ -27,6 +27,8 @@ $total_pages = ceil($total_data / $limit);
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
 </head>
 
 <body style="background-color: #E1E1E1;">
@@ -38,17 +40,17 @@ $total_pages = ceil($total_data / $limit);
         <div class="bg-light p-4 rounded shadow-lg mt-3">
             <div class="table-responsive">
                 <table class="table table-bordered table-hover bg-dark">
-                    <thead class="bg-dark text-white">
+                    <thead>
                         <tr>
-                            <th>No</th>
-                            <th>Email</th>
-                            <th>Nama Lengkap</th>
-                            <th>Alamat</th>
-                            <th>Kode Unik</th>
-                            <th>Status Konfirmasi</th>
-                            <th>Undangan PDF</th>
-                            <th>Ucapan</th>
-                            <th>Aksi</th>
+                            <th class="bg-primary">No</th>
+                            <th class="bg-primary">Email</th>
+                            <th class="bg-primary">Nama Lengkap</th>
+                            <th class="bg-primary">Alamat</th>
+                            <th class="bg-primary">Kode Unik</th>
+                            <th class="bg-primary">Status Konfirmasi</th>
+                            <th class="bg-primary">Undangan PDF</th>
+                            <th class="bg-primary">Ucapan</th>
+                            <th class="bg-primary">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -86,7 +88,7 @@ $total_pages = ceil($total_data / $limit);
                                 <td>{$pdf_link}</td>
                                 <td>{$ucapan}</td>
                                 <td>
-                                    <a href='crud-tamu/hapus.php?id={$row['id']}' class='btn btn-danger btn-sm' onclick='return confirm(\"Hapus data ini?\")'>Hapus</a>
+                                    <a href='crud-tamu/hapus.php?id={$row['id']}' class='btn btn-danger btn-sm fas fa-trash' onclick='return confirm(\"Hapus data ini?\")'></a>
                                 </td>
                             </tr>
                         ";

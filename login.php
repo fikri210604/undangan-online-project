@@ -17,7 +17,7 @@
 <body>
     <?php include 'asset/navbar.php'; ?>
 
-    <div class="flex flex-col md:flex-row items-center justify-center gap-10 min-h-screen px-4 py-10">
+    <div class="flex flex-col md:flex-row items-center justify-center gap-6 min-h-screen px-4">
         <!-- Gambar Sebelah Kiri-->
         <div class="w-full md:w-1/2 flex justify-center">
             <img src="public/img/asset/background-nikah.svg" alt="Ilustrasi"
