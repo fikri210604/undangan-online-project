@@ -18,7 +18,7 @@
 
 </head>
 
-<body class="bg-rose-100">
+<body class="bg-[#FFF7EE]">
 
     <!-- Hero Section -->
     <section class="relative w-full h-screen font-[Poppins]">
@@ -44,7 +44,7 @@
                 (Ar-Rum : 21)
             </h3>
             <a href="#konfirmasi"
-                class="mt-4 bg-[#E5BDA7] text-[#74583E] w-[250px] px-6 py-3 rounded-full font-bold hover:bg-gray-200 hover:text-black transition outline outline-1 outline-[#74583E]"
+                class="mt-4 bg-[#ffe4d5] text-[#74583E] w-[250px] px-6 py-3 rounded-full font-bold hover:bg-gray-200 hover:text-black transition outline outline-1 outline-[#74583E]"
                 id="rsvp">
                 RSVP
             </a>
@@ -71,7 +71,7 @@
                 <!-- Pengantin Pria -->
                 <div class="flex-1 flex flex-col items-center gap-4">
                     <div class="relative w-60 h-60 p-8">
-                        <img src="public/img/asset/background.jpeg" alt="Pengantin Pria"
+                        <img src="public/img/asset/alvin.jpeg" alt="Pengantin Pria"
                             class="w-full h-full object-cover rounded-full z-10 relative" />
                         <img src="public/img/asset/frame-pengantin.png" alt="Frame Pengantin"
                             class="absolute inset-0 w-full h-full object-contain z-40 pointer-events-none scale-110" />
@@ -84,7 +84,7 @@
                 <!-- Pengantin Wanita -->
                 <div class="flex-1 flex flex-col items-center gap-4">
                     <div class="relative w-60 h-60 p-8">
-                        <img src="public/img/asset/background.jpeg" alt="Pengantin Wanita"
+                        <img src="public/img/asset/rahayu.jpeg" alt="Pengantin Wanita"
                             class="w-full h-full object-cover rounded-full z-10 relative" />
                         <img src="public/img/asset/frame-pengantin.png" alt="Frame Pengantin"
                             class="absolute inset-0 w-full h-full object-contain z-40 pointer-events-none scale-110" />
@@ -203,20 +203,19 @@
                             attend?</label>
                         <div class="flex gap-4 mt-1">
                             <label id="label-yes"
-                                class="mt-4 bg-rose-50 text-[#ffcc00] w-[250px] px-6 py-3 rounded-lg font-medium hover:bg-gray-200 hover:text-black transition outline outline-3 outline-rose-600 text-center">
+                                class="mt-4 bg-[#ffe4d5] text-[#74583F] w-[250px] px-6 py-3 rounded font-bold hover:bg-gray-200 hover:text-black transition outline outline-1 outline-[#74583E]">
                                 <input type="radio" name="attendance" value="yes" class="hidden" id="yes"> Yes
                             </label>
                             <label id="label-no"
-                                class="mt-4 bg-rose-50 text-[#ffcc00] w-[250px] px-6 py-3 rounded-lg font-medium hover:bg-gray-200 hover:text-black transition outline outline-3 outline-rose-600 text-center">
+                                class="mt-4 bg-[#ffe4d5] text-[#74583F] w-[250px] px-6 py-3 rounded font-bold hover:bg-gray-200 hover:text-black transition outline outline-1 outline-[#74583E]">
                                 <input type="radio" name="attendance" value="no" class="hidden" id="no"> No
                             </label>
                         </div>
                         <p class="text-sm text-gray-500 mt-1 font-poppins">Please select one option</p>
                     </div>
                     <button type="submit"
-                        class="mt-4 bg-rose-50 text-[#ffcc00] w-[250px] px-6 py-3 rounded-lg font-medium hover:bg-gray-200 hover:text-black transition outline outline-3 outline-rose-600">
-                        Submit RSVP
-                    </button>
+                        class="mt-4 bg-[#ffe4d5] text-[#74583F] w-[250px] px-6 py-3 rounded font-bold hover:bg-gray-200 hover:text-black transition outline outline-1 outline-[#74583E]">
+                        Submit RSVP </button>
 
                 </form>
             </div>
@@ -238,68 +237,74 @@
                 <!-- Garis Tengah -->
                 <div class="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gray-300"></div>
 
-                <!-- SD -->
+                <!-- Cerita 1 - SD -->
                 <div class="flex justify-between items-center mb-12">
                     <div class="w-5/12">
                         <div class="bg-white rounded-lg p-6 outline outline-1 outline-[#74583E] ">
-                            <h3 class="text-xl font-bold text-gray-800" style="font-family: 'monserrat', light;">
-                                SDIT Permata Bunda</h3>
-                            <p class="mt-2 text-gray-500">Pendidikan dasar saya dimulai di SDIT Permata Bunda.</p>
+                            <h3 class="text-xl font-bold text-gray-800" style="font-family: 'monserrat', light;">SDN
+                                Harapan Jaya</h3>
+                            <p class="mt-2 text-gray-500 text-sm">Segalanya bermula di bangku SD. Saat itu, aku masih
+                                belum mengenal arti cinta. Tapi, ada satu teman bernama Naya yang selalu duduk di bangku
+                                depan. Tawanya, entah kenapa, selalu membuat hari-hariku cerah.</p>
                         </div>
                     </div>
                     <div class="z-10">
-                        <img src="public/img/asset/background.jpeg" alt="Foto SD"
+                        <img src="public/img/asset/foto3.jpg" alt="Foto SD"
                             class="w-32 h-32 rounded-full border-4 border-white object-cover shadow-md">
                     </div>
                     <div class="w-5/12"></div>
                 </div>
 
-                <!-- SMP -->
+                <!-- Cerita 2 - SMP -->
                 <div class="flex justify-between items-center mb-12">
                     <div class="w-5/12"></div>
                     <div class="z-10">
-                        <img src="public/img/asset/background.jpeg" alt="Foto SMP"
+                        <img src="public/img/asset/foto2.jpg" alt="Foto SMP"
                             class="w-32 h-32 rounded-full border-4 border-white object-cover shadow-md">
                     </div>
                     <div class="w-5/12">
                         <div class="bg-white rounded-lg outline outline-1 outline-[#74583E] p-6">
-                            <h3 class="text-xl font-bold text-gray-800" style="font-family: 'monserrat', light;">SMP
-                                Negeri 1 Contoh</h3>
-                            <p class="mt-2 text-gray-500">Di SMP, kami mulai saling mengenal melalui kegiatan OSIS.
-                            </p>
+                            <h3 class="text-sm font-bold text-gray-800" style="font-family: 'monserrat', light;">SMP
+                                Cendekia Bangsa</h3>
+                            <p class="mt-2 text-gray-500">Kami bertemu lagi di SMP, tanpa sengaja duduk sebangku di
+                                kelas 7. Dari situ kami mulai sering belajar bersama. Aku mulai sadar, ada perasaan
+                                berbeda saat melihat dia tertawa karena lelucon recehku.</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- MAN -->
+                <!-- Cerita 3 - SMA -->
                 <div class="flex justify-between items-center mb-12">
                     <div class="w-5/12">
                         <div class="bg-white rounded-lg outline outline-1 outline-[#74583E] p-6">
-                            <h3 class="text-xl font-bold text-gray-800" style="font-family: 'monserrat', light;">
-                                SDIT Permata Bunda</h3>
-                            <p class="mt-2 text-gray-500">Pendidikan dasar saya dimulai di SDIT Permata Bunda.</p>
+                            <h3 class="text-sm font-bold text-gray-800" style="font-family: 'monserrat', light;">SMA
+                                Negeri 5 Harmoni</h3>
+                            <p class="mt-2 text-gray-500">SMA jadi masa yang paling berkesan. Kami aktif di organisasi
+                                yang sama dan mulai sering pulang bareng. Aku memberanikan diri menyatakan perasaan saat
+                                acara perpisahan kelas 12... dan dia tersenyum sambil mengangguk.</p>
                         </div>
                     </div>
                     <div class="z-10">
-                        <img src="public/img/asset/background.jpeg" alt="Foto SD"
+                        <img src="public/img/asset/foto2.jpg" alt="Foto SMA"
                             class="w-32 h-32 rounded-full border-4 border-white object-cover shadow-md">
                     </div>
                     <div class="w-5/12"></div>
                 </div>
 
-                <!-- Universitas -->
+                <!-- Cerita 4 - Kuliah -->
                 <div class="flex justify-between items-center mb-12">
                     <div class="w-5/12"></div>
                     <div class="z-10">
-                        <img src="public/img/asset/background.jpeg" alt="Foto SMP"
+                        <img src="public/img/asset/background1.jpeg" alt="Foto Kuliah"
                             class="w-32 h-32 rounded-full border-4 border-white object-cover shadow-md">
                     </div>
                     <div class="w-5/12">
                         <div class="bg-white rounded-lg outline outline-1 outline-[#74583E] p-6">
-                            <h3 class="text-xl font-bold text-gray-800" style="font-family: 'monserrat', light;">SMP
-                                Negeri 1 Contoh</h3>
-                            <p class="mt-2 text-gray-500">Di SMP, kami mulai saling mengenal melalui kegiatan OSIS.
-                            </p>
+                            <h3 class="text-sm font-bold text-gray-800" style="font-family: 'monserrat', light;">
+                                Universitas Cinta Sejati</h3>
+                            <p class="mt-2 text-gray-500">Walau kami kuliah di kota berbeda, kami tetap menjaga
+                                komunikasi. Liburan semester jadi momen paling ditunggu. Setelah lulus, kami memutuskan
+                                untuk melangkah ke jenjang yang lebih serius — bersama.</p>
                         </div>
                     </div>
                 </div>

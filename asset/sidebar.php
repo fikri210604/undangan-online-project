@@ -7,7 +7,7 @@ $currentPage = basename($_SERVER['PHP_SELF'], '.php');
   <nav id="sidebarMenu" class=" text-white p-3" style="width: 250px; min-height: 100vh; transition: width 0.3s; background-color: #002E5F;"
 "
     data-state="open">
-    <h4 class="text-white" id="sidebarTitle">Admin</h4>
+    <h4 class="text-white" id="sidebarTitle" style="font-family: 'Montserrat', cursive;">Admin Nikah</h4>
     <ul class="nav flex-column mt-3">
       <li class="nav-item">
         <a class="nav-link text-white mt-3 <?= ($currentPage == 'dashboard') ? 'active bg-primary rounded' : '' ?>"

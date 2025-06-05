@@ -47,13 +47,12 @@
                 (Ar-Rum : 21)
             </h3>
             <a href="login.php"
-                class="mt-4 bg-[#E5BDA7] text-[#74583E] w-[250px] px-6 py-3 rounded-full font-bold hover:bg-gray-200 hover:text-black transition outline outline-1 outline-[#74583E]" 
+                class="mt-4 bg-[#ffe4d5] text-[#74583E] w-[250px] px-6 py-3 rounded-full font-bold hover:bg-gray-200 hover:text-black transition outline outline-1 outline-[#74583E]"
                 id="rsvp">
                 RSVP
             </a>
         </div>
     </section>
-
 
     <!-- Surat Undangan -->
     <section id="undangan" class="py-16 px-8 mx-auto scroll-mt-20">
@@ -73,7 +72,7 @@
                 <!-- Pengantin Pria -->
                 <div class="flex-1 flex flex-col items-center gap-4">
                     <div class="relative w-60 h-60 p-8">
-                        <img src="public/img/asset/background.jpeg" alt="Pengantin Pria"
+                        <img src="public/img/asset/alvin.jpeg" alt="Pengantin Pria"
                             class="w-full h-full object-cover rounded-full z-10 relative" />
                         <img src="public/img/asset/frame-pengantin.png" alt="Frame Pengantin"
                             class="absolute inset-0 w-full h-full object-contain z-40 pointer-events-none scale-110" />
@@ -86,7 +85,7 @@
                 <!-- Pengantin Wanita -->
                 <div class="flex-1 flex flex-col items-center gap-4">
                     <div class="relative w-60 h-60 p-8">
-                        <img src="public/img/asset/background.jpeg" alt="Pengantin Wanita"
+                        <img src="public/img/asset/rahayu.jpeg" alt="Pengantin Wanita"
                             class="w-full h-full object-cover rounded-full z-10 relative" />
                         <img src="public/img/asset/frame-pengantin.png" alt="Frame Pengantin"
                             class="absolute inset-0 w-full h-full object-contain z-40 pointer-events-none scale-110" />
@@ -98,7 +97,6 @@
             </div>
         </div>
     </section>
-
 
     <!-- Jadwal Acara -->
     <section id="acara" class="py-20 px-8 scroll-mt-10 bg-[#EDEDED]">
@@ -152,8 +150,7 @@
         </div>
 
         <!-- Lokasi Google Maps -->
-        <h1 class="text-4xl font-bold text-[#74583E] mb-6 text-center mt-10"
-            style="font-family: 'monserrat', light;">
+        <h1 class="text-4xl font-bold text-[#74583E] mb-6 text-center mt-10" style="font-family: 'monserrat', light;">
             <i class="fas fa-map-marker-alt mr-2"></i>
             Lokasi Acara
             <i class="fas fa-map-marker-alt ml-2"></i>
@@ -167,27 +164,26 @@
         </div>
     </section>
 
-
-
     <!-- Cari Nama Tamu-->
     <section id="cari" class="py-16 px-8 mx-auto scroll-mt-20 ">
-        <h1 class="text-4xl font-bold text-[#74583E] mb-6 text-center" style="font-family: 'monsterat', light;">
-            Cari Nama Tamu
+        <h1 class="text-4xl font-bold text-[#74583E] mb-6 text-center" style="font-family: 'monserrat', light;">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            Temukan Nama Anda
+            <i class="fa-solid fa-magnifying-glass"></i>
         </h1>
-        <h2 class="text-lg text-black mb-8 text-center font-light">Silahkan cari nama Anda untuk konfirmasi apakah nama Anda tersedia</h2>
-        <form method="GET" action="" class="flex flex-col md:flex-row gap-4 justify-center">
+        <h2 class="text-lg text-black mb-8 text-center font-light">Silahkan cari nama Anda untuk konfirmasi apakah nama
+            Anda tersedia</h2>
+        <form method="GET" action="" class="flex flex-col md:flex-row gap-4 justify-center items-center">
             <input type="text" name="cari" placeholder="Cari Nama Anda..."
-                class="w-[400px] px-4 py-2 rounded-full border border-rose-300 focus:outline-none focus:ring-2 focus:ring-rose-300"
+                class="w-[400px] px-5 py-3 rounded-full border border-[#74583E] focus:outline-none focus:ring-2 focus:ring-[#74583E]"
                 required>
             <button type="submit"
-                class="bg-[#E5BDA7] text-[#74583E] w-32 px-6 py-3  rounded-full font-bold hover:bg-rose-100 hover:text-[#ffcc00] outline outline-1 outline-[#74583E] transition duration-300">
+                class="bg-[#ffe4d5] text-[#74583E] px-6 py-3  rounded-full font-bold hover:bg-rose-100 hover:text-[#ffcc00] outline outline-1 outline-[#74583E] transition duration-300">
                 Cari
             </button>
         </form>
         <?php include("includes/search.php"); ?>
-
     </section>
-
 
     <!-- Cerita Kami -->
     <section id="cerita" class="py-16 px-8 mx-auto scroll-mt-20 bg-[#EDEDED]">
@@ -203,69 +199,80 @@
                 <!-- Garis Tengah -->
                 <div class="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gray-300"></div>
 
-                <!-- Cerita 1 -->
+                <!-- Cerita 1 - SD -->
                 <div class="flex justify-between items-center mb-12">
                     <div class="w-5/12">
                         <div class="bg-white rounded-lg p-6 outline outline-1 outline-[#74583E] ">
-                            <h3 class="text-xl font-bold text-gray-800" style="font-family: 'monserrat', light;" >SDIT Permata Bunda</h3>
-                            <p class="mt-2 text-gray-500">Pendidikan dasar saya dimulai di SDIT Permata Bunda.</p>
+                            <h3 class="text-xl font-bold text-gray-800" style="font-family: 'monserrat', light;">SDN
+                                Harapan Jaya</h3>
+                            <p class="mt-2 text-gray-500 text-sm">Segalanya bermula di bangku SD. Saat itu, aku masih
+                                belum mengenal arti cinta. Tapi, ada satu teman bernama Naya yang selalu duduk di bangku
+                                depan. Tawanya, entah kenapa, selalu membuat hari-hariku cerah.</p>
                         </div>
                     </div>
                     <div class="z-10">
-                        <img src="public/img/asset/background.jpeg" alt="Foto SD"
+                        <img src="public/img/asset/foto3.jpg" alt="Foto SD"
                             class="w-32 h-32 rounded-full border-4 border-white object-cover shadow-md">
                     </div>
                     <div class="w-5/12"></div>
                 </div>
 
-                <!-- Cerita 2 -->
+                <!-- Cerita 2 - SMP -->
                 <div class="flex justify-between items-center mb-12">
                     <div class="w-5/12"></div>
                     <div class="z-10">
-                        <img src="public/img/asset/background.jpeg" alt="Foto SMP"
+                        <img src="public/img/asset/foto2.jpg" alt="Foto SMP"
                             class="w-32 h-32 rounded-full border-4 border-white object-cover shadow-md">
                     </div>
                     <div class="w-5/12">
                         <div class="bg-white rounded-lg outline outline-1 outline-[#74583E] p-6">
-                            <h3 class="text-xl font-bold text-gray-800" style="font-family: 'monserrat', light;">SMP Negeri 1 Contoh</h3>
-                            <p class="mt-2 text-gray-500">Di SMP, kami mulai saling mengenal melalui kegiatan OSIS.</p>
+                            <h3 class="text-sm font-bold text-gray-800" style="font-family: 'monserrat', light;">SMP
+                                Cendekia Bangsa</h3>
+                            <p class="mt-2 text-gray-500">Kami bertemu lagi di SMP, tanpa sengaja duduk sebangku di
+                                kelas 7. Dari situ kami mulai sering belajar bersama. Aku mulai sadar, ada perasaan
+                                berbeda saat melihat dia tertawa karena lelucon recehku.</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- Cerita 3 -->
+                <!-- Cerita 3 - SMA -->
                 <div class="flex justify-between items-center mb-12">
                     <div class="w-5/12">
                         <div class="bg-white rounded-lg outline outline-1 outline-[#74583E] p-6">
-                            <h3 class="text-xl font-bold text-gray-800" style="font-family: 'monserrat', light;">SDIT Permata Bunda</h3>
-                            <p class="mt-2 text-gray-500">Pendidikan dasar saya dimulai di SDIT Permata Bunda.</p>
+                            <h3 class="text-sm font-bold text-gray-800" style="font-family: 'monserrat', light;">SMA
+                                Negeri 5 Harmoni</h3>
+                            <p class="mt-2 text-gray-500">SMA jadi masa yang paling berkesan. Kami aktif di organisasi
+                                yang sama dan mulai sering pulang bareng. Aku memberanikan diri menyatakan perasaan saat
+                                acara perpisahan kelas 12... dan dia tersenyum sambil mengangguk.</p>
                         </div>
                     </div>
                     <div class="z-10">
-                        <img src="public/img/asset/background.jpeg" alt="Foto SD"
+                        <img src="public/img/asset/foto1.jpg" alt="Foto SMA"
                             class="w-32 h-32 rounded-full border-4 border-white object-cover shadow-md">
                     </div>
                     <div class="w-5/12"></div>
                 </div>
 
-                <!-- Cerita 4 -->
+                <!-- Cerita 4 - Kuliah -->
                 <div class="flex justify-between items-center mb-12">
                     <div class="w-5/12"></div>
                     <div class="z-10">
-                        <img src="public/img/asset/background.jpeg" alt="Foto SMP"
+                        <img src="public/img/asset/background1.jpeg" alt="Foto Kuliah"
                             class="w-32 h-32 rounded-full border-4 border-white object-cover shadow-md">
                     </div>
                     <div class="w-5/12">
                         <div class="bg-white rounded-lg outline outline-1 outline-[#74583E] p-6">
-                            <h3 class="text-xl font-bold text-gray-800" style="font-family: 'monserrat', light;">SMP Negeri 1 Contoh</h3>
-                            <p class="mt-2 text-gray-500">Di SMP, kami mulai saling mengenal melalui kegiatan OSIS.</p>
+                            <h3 class="text-sm font-bold text-gray-800" style="font-family: 'monserrat', light;">
+                                Universitas Cinta Sejati</h3>
+                            <p class="mt-2 text-gray-500">Walau kami kuliah di kota berbeda, kami tetap menjaga
+                                komunikasi. Liburan semester jadi momen paling ditunggu. Setelah lulus, kami memutuskan
+                                untuk melangkah ke jenjang yang lebih serius — bersama.</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
 
 </body>
 
