@@ -1,4 +1,6 @@
-<?php include 'asset/navbar.php'; ?>
+<?php include 'asset/navbar.php';
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -50,8 +52,6 @@
             </a>
         </div>
     </section>
-
-
 
     <!-- Surat Undangan -->
     <section id="undangan" class="py-16 px-8 mx-auto scroll-mt-20">
@@ -164,19 +164,26 @@
     </section>
 
     <!-- Konfirmasi Kehadiran Tamu -->
-    <section id="konfirmasi" class="py-16 px-4 md:px-32 bg-white scroll-mt-10">
+    <section id="konfirmasi" class="py-16 px-4 md:px-32 bg-white scroll-mt-20">
         <div class="flex flex-col md:flex-row gap-12 justify-center items-center">
+            <!-- Teks RSVP -->
             <div class="flex-1">
                 <h2 class="text-3xl md:text-4xl font-bold font-poppins mb-4 text-black">
-                    RSVP for the Wedding
+                    Konfirmasi Kehadiran
                 </h2>
-                <p class="text-base text-gray-700 font-poppins">
-                    Please let us know if you will be attending our wedding.
+                <p class="text-base text-gray-700 font-poppins mb-6">
+                    Silahkan berikan konfirmasi kehadiran, apakah akan hadir atau tidak.
                 </p>
+                <!-- Slideshow Foto -->
+                <div
+                    class="relative w-72 h-72 rounded-xl overflow-hidden shadow-lg border-2 border-[#74583F] transform -translate-x-3">
+                    <img id="slideshow" src="public/img/asset/background.jpeg" alt="Foto Mempelai"
+                        class="w-full h-full object-cover transition duration-500 ease-in-out">
+                </div>
             </div>
 
             <div class="flex-1 w-full max-w-xl">
-                <form action="#" method="POST" class="flex flex-col gap-6">
+                <form action="includes\konfirmasi-user.php" method="POST" class="flex flex-col gap-6">
                     <div>
                         <label for="name"
                             class="block text-sm font-medium text-gray-800 mb-1 font-poppins">Wishes</label>
@@ -186,11 +193,11 @@
                     <!-- Jumlah Tamu -->
                     <div>
                         <label for="jumlahUndangan" class="block text-sm font-medium text-gray-800 mb-1 font-poppins">
-                            How many people will attend?
+                            Berapa orang yang akan hadir?
                         </label>
                         <select id="jumlahUndangan" name="jumlahUndangan"
                             class="w-full px-4 py-2 rounded-md border border-gray-300 bg-white text-black focus:outline-none focus:ring-2 focus:ring-black/30 font-poppins">
-                            <option value="" disabled selected>Select number of guests</option>
+                            <option value="" disabled selected>Pilih Jumlah Kehadiran (Maksimal 5)</option>
                             <option value="1">1 orang</option>
                             <option value="2">2 orang</option>
                             <option value="3">3 orang</option>
@@ -199,23 +206,21 @@
                         </select>
                     </div>
                     <div>
-                        <label class="block text-sm font-medium text-gray-800 mb-1 font-poppins">Will you
-                            attend?</label>
+                        <label class="block text-sm font-medium text-gray-800 mb-1 font-poppins">Apakah kamu akan hadir?</label>
                         <div class="flex gap-4 mt-1">
                             <label id="label-yes"
                                 class="mt-4 bg-[#ffe4d5] text-[#74583F] w-[250px] px-6 py-3 rounded font-bold hover:bg-gray-200 hover:text-black transition outline outline-1 outline-[#74583E]">
-                                <input type="radio" name="attendance" value="yes" class="hidden" id="yes"> Yes
+                                <input type="radio" name="attendance" value="yes" class="hidden" id="yes"> Ya
                             </label>
                             <label id="label-no"
                                 class="mt-4 bg-[#ffe4d5] text-[#74583F] w-[250px] px-6 py-3 rounded font-bold hover:bg-gray-200 hover:text-black transition outline outline-1 outline-[#74583E]">
-                                <input type="radio" name="attendance" value="no" class="hidden" id="no"> No
+                                <input type="radio" name="attendance" value="no" class="hidden" id="no"> Tidak
                             </label>
                         </div>
-                        <p class="text-sm text-gray-500 mt-1 font-poppins">Please select one option</p>
+                        <p class="text-sm text-gray-500 mt-1 font-poppins">Silahkan pilih satu opsi</p>
                     </div>
                     <button type="submit"
-                        class="mt-4 bg-[#ffe4d5] text-[#74583F] w-[250px] px-6 py-3 rounded font-bold hover:bg-gray-200 hover:text-black transition outline outline-1 outline-[#74583E]">
-                        Submit RSVP </button>
+                        class="mt-4 bg-[#ffe4d5] text-[#74583F] w-[250px] px-6 py-3 rounded font-bold hover:bg-gray-200 hover:text-black transition outline outline-1 outline-[#74583E]">Kirimkan Konfirmasi</button>
 
                 </form>
             </div>
@@ -340,6 +345,20 @@
             yesRadio.addEventListener('change', updateSelection);
             noRadio.addEventListener('change', updateSelection);
         });
+
+        const images = [
+            'public/img/asset/background1.jpeg',
+            'public/img/asset/foto1.jpg',
+            'public/img/asset/foto2.jpg'
+        ];
+
+        let currentIndex = 0;
+        const slideshow = document.getElementById('slideshow');
+
+        setInterval(() => {
+            currentIndex = (currentIndex + 1) % images.length;
+            slideshow.src = images[currentIndex];
+        }, 3000); 
     </script>
 
 </body>

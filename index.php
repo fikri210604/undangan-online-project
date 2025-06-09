@@ -1,4 +1,8 @@
-<?php include 'asset/navbar.php'; ?>
+<?php include 'asset/navbar.php'; 
+
+if(isset($_SESSION['login'])){
+    header("Location: landing.php");}
+?>
 
 
 <!DOCTYPE html>
@@ -171,10 +175,10 @@
             Temukan Nama Anda
             <i class="fa-solid fa-magnifying-glass"></i>
         </h1>
-        <h2 class="text-lg text-black mb-8 text-center font-light">Silahkan cari nama Anda untuk konfirmasi apakah nama
+        <h2 class="text-lg text-black mb-8 text-center font-light">Silahkan masukkan kode unik Anda untuk konfirmasi apakah nama
             Anda tersedia</h2>
         <form method="GET" action="" class="flex flex-col md:flex-row gap-4 justify-center items-center">
-            <input type="text" name="cari" placeholder="Cari Nama Anda..."
+            <input type="text" name="cari" placeholder="Masukkan kode unik Anda..."
                 class="w-[400px] px-5 py-3 rounded-full border border-[#74583E] focus:outline-none focus:ring-2 focus:ring-[#74583E]"
                 required>
             <button type="submit"
