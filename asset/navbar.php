@@ -1,6 +1,7 @@
 <?php session_start(); ?>
 
 <nav id="navbar" class="fixed w-full z-50">
+    <!-- Href saat user sudah login -->
     <?php if (isset($_SESSION['login']) && $_SESSION['login'] === true): ?>
         <div class="max-w-screen-xl mx-auto flex flex-wrap items-center justify-between p-6">
             <a href="landing.php" class="flex items-center">
@@ -9,6 +10,7 @@
             </a>
 
         <?php else: ?>
+        <!-- Href saat user belum login -->
             <div class="max-w-screen-xl mx-auto flex flex-wrap items-center justify-between p-6">
                 <a href="index.php" class="flex items-center">
                     <img src="public/img/asset/logo.png" class="h-10 mr-3" alt="Logo" />
@@ -26,6 +28,7 @@
 
             <ul id="mobile-menu"
                 class="hidden w-full md:flex md:w-auto flex-col md:flex-row items-center gap-4 mt-4 md:mt-0 font-medium">
+            <!-- Menu Links saat sudah login -->
                 <?php if (isset($_SESSION['login']) && $_SESSION['login'] === true): ?>
 
                     <li><a href="#undangan"
@@ -39,6 +42,8 @@
                         <a href="logout.php"
                             class="py-2 px-4 bg-rose-500 text-white rounded-lg hover:bg-rose-600 transition duration-200">Logout</a>
                     </li>
+
+                <!-- Menu Links saat belum login -->
                 <?php else: ?>
                     <li><a href="#undangan"
                             class="nav-link block py-2 px-4 text-gray-700 hover:text-[#74583E] md:p-0">Undangan</a></li>

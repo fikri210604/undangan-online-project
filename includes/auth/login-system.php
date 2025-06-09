@@ -3,7 +3,7 @@ include("../db.php");
 session_start();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (isset($_POST["nama"]) && isset($_POST["password"])) {
+    if (!empty($_POST["nama"]) && !empty($_POST["password"])) {
         $username = $_POST["nama"];
         $password = $_POST["password"];
 
@@ -15,12 +15,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($user = mysqli_fetch_assoc($result)) {
             if (password_verify($password, $user["password"])) {
                 $_SESSION['login'] = true;
-                $_SESSION['user'] = $user;
+                $_SESSION['user_id'] = $user['id']; // penting untuk validasi
+                $_SESSION['role'] = strtolower($user['role']); // pastikan lowercase
 
                 // Redirect berdasarkan role
-                if ($user['role'] === 'admin') {
+                if ($_SESSION['role'] === 'admin') {
                     header("Location: ../../admin/dashboard.php");
-                } elseif ($user['role'] === 'tamu') {
+                } elseif ($_SESSION['role'] === 'tamu') {
                     header("Location: ../../landing.php");
                 } else {
                     header("Location: ../index.php");

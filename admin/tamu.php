@@ -1,16 +1,4 @@
-<?php include("../includes/db.php"); 
-
-// Pagination Data Setup
-$limit = 10;
-$page = isset($_GET['page']) ? (int) $_GET['page'] : 1;
-$offset = ($page - 1) * $limit;
-
-// Query total data untuk pagination
-$total_query = mysqli_query($conn, "SELECT COUNT(*) AS total FROM users WHERE role = 'tamu'");
-$total_result = mysqli_fetch_assoc($total_query);
-$total_data = $total_result['total'];
-$total_pages = ceil($total_data / $limit);
-?>
+<?php include("../includes/db.php"); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,7 +10,6 @@ $total_pages = ceil($total_data / $limit);
     integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
 </head>
 
 <body>
@@ -31,29 +18,63 @@ $total_pages = ceil($total_data / $limit);
   <div class="container mt-4 p-4">
     <h2>Data User</h2>
     <div class="bg-light p-4 rounded shadow-lg mt-3">
-      <div class="d-flex justify-content-end mb-3">
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tambahTamu">
-          + Tambah Tamu
-        </button>
+
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <form action="" method="GET" class="d-flex">
+            <input type="text" name="cari" placeholder="Cari Nama Tamu..." class="form-control-sm me-2"
+              value="<?= isset($_GET['cari']) ? htmlspecialchars($_GET['cari']) : '' ?>">
+            <button type="submit" class="btn btn-primary"><i class="bi bi-search"></i> Cari</button>
+          </form>
+        </div>
+        <div class="col-md-6 text-end">
+          <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#tambahTamu">
+            <i class="bi bi-plus-circle"></i> Tambah Tamu
+          </button>
+        </div>
       </div>
+
+      <?php include("../includes/cari-user.php"); ?>
 
       <div class="table-responsive">
         <table class="table table-bordered table-hover table-striped">
           <thead>
             <tr class="bg-primary text-white">
-              <th class="bg-primary">No</th>
-              <th class="bg-primary">Email</th>
-              <th class="bg-primary">Nama Lengkap</th>
-              <th class="bg-primary">Alamat</th>
-              <th class="bg-primary">Kode Unik</th>
-              <th class="bg-primary">Role</th>
-              <th class="bg-primary">Aksi</th>
+              <th>No</th>
+              <th>Email</th>
+              <th>Nama Lengkap</th>
+              <th>Alamat</th>
+              <th>Kode Unik</th>
+              <th>Role</th>
+              <th>Aksi</th>
             </tr>
           </thead>
           <tbody>
             <?php
-            $no = 1;
-            $result = mysqli_query($conn, "SELECT * FROM users");
+            $limit = 10;
+            $page = isset($_GET['page']) ? (int) $_GET['page'] : 1;
+            $offset = ($page - 1) * $limit;
+
+            // Mencari data berdasarkan nama
+            $cari = isset($_GET['cari']) ? mysqli_real_escape_string($conn, $_GET['cari']) : '';
+
+            // Query supaya admin dan tamu bisa bergabung
+            $role = "WHERE role IN ('tamu', 'admin')";
+            if (!empty($cari)) {
+              $role .= " AND nama LIKE '%$cari%'";
+            }
+
+            // Query total data untuk pagination
+            $total_query = mysqli_query($conn, "SELECT COUNT(*) AS total FROM users $role");
+            $total_result = mysqli_fetch_assoc($total_query);
+            $total_data = $total_result['total'];
+            $total_pages = ceil($total_data / $limit);
+
+            // Query utama dengan limit
+            $query = "SELECT * FROM users $role ORDER BY id DESC LIMIT $limit OFFSET $offset";
+            $result = mysqli_query($conn, $query);
+
+            $no = $offset + 1;
             $modals = "";
 
             while ($row = mysqli_fetch_assoc($result)) {
@@ -72,7 +93,6 @@ $total_pages = ceil($total_data / $limit);
                 </tr>
               ";
 
-              // Buat modal edit user dan simpan di variabel
               $modals .= "
                 <div class='modal fade' id='editTamu{$row['id']}' tabindex='-1' aria-labelledby='editTamuLabel{$row['id']}' aria-hidden='true'>
                   <div class='modal-dialog'>
@@ -115,29 +135,29 @@ $total_pages = ceil($total_data / $limit);
             ?>
           </tbody>
         </table>
+
         <!-- Pagination -->
         <nav aria-label="Page navigation" class="mt-4">
           <ul class="pagination justify-content-center">
             <li class="page-item <?= ($page <= 1) ? 'disabled' : '' ?>">
-              <a class="page-link" href="?page=1">&laquo;</a>
+              <a class="page-link" href="?page=1&cari=<?= urlencode($cari) ?>">&laquo;</a>
             </li>
             <li class="page-item <?= ($page <= 1) ? 'disabled' : '' ?>">
-              <a class="page-link" href="?page=<?= $page - 1 ?>">&lsaquo;</a>
+              <a class="page-link" href="?page=<?= $page - 1 ?>&cari=<?= urlencode($cari) ?>">&lsaquo;</a>
             </li>
             <li class="page-item active">
               <span class="page-link"><?= $page ?></span>
             </li>
             <li class="page-item <?= ($page >= $total_pages) ? 'disabled' : '' ?>">
-              <a class="page-link" href="?page=<?= $page + 1 ?>">&rsaquo;</a>
+              <a class="page-link" href="?page=<?= $page + 1 ?>&cari=<?= urlencode($cari) ?>">&rsaquo;</a>
             </li>
             <li class="page-item <?= ($page >= $total_pages) ? 'disabled' : '' ?>">
-              <a class="page-link" href="?page=<?= $total_pages ?>">&raquo;</a>
+              <a class="page-link" href="?page=<?= $total_pages ?>&cari=<?= urlencode($cari) ?>">&raquo;</a>
             </li>
           </ul>
         </nav>
-        <?php
-        echo $modals;
-        ?>
+
+        <?= $modals ?>
       </div>
     </div>
   </div>
@@ -178,13 +198,9 @@ $total_pages = ceil($total_data / $limit);
     </div>
   </div>
 
-  <!-- Bootstrap JS dan Popper.js -->
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-    integrity="sha384-IQsoLXlROj0PqvGiDUO7q0A2KgG9c1F7e5Pbb6h1gIi6ZyZ4l4F8Lxa6EJfNhzFv"
-    crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.min.js"
-    integrity="sha384-wH4PgLf4sS8vLHTmMTKYQhr9vVQ0pYhwN0DzKLIxtbd4OJJgUjG1zFoynQj1g3KG"
-    crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.min.js"></script>
 </body>
 
 </html>

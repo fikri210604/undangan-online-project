@@ -1,6 +1,13 @@
 <?php
 include("../includes/db.php");
 
+session_start();
+// Validasi admin
+if(!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
+    header("Location: ../index.php");
+    exit();
+}
+
 $query = "SELECT COUNT(*) as total FROM users WHERE role = 'tamu'";
 $result = mysqli_query($conn, $query);
 $data = mysqli_fetch_assoc($result);
@@ -29,6 +36,7 @@ $jumlahBelumKonfirmasi = $jumlahTamu - ($jumlahHadir + $jumlahTidakHadir);
 if ($jumlahBelumKonfirmasi < 0) {
     $jumlahBelumKonfirmasi = 0;
 }
+
 ?>
 
 
