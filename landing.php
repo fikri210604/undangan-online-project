@@ -1,5 +1,16 @@
-<?php include 'asset/navbar.php';
+<?php 
+session_start();
+include 'asset/navbar.php';
+include 'includes/db.php';
 
+$nama = '';
+if (isset($_SESSION['user_id'])) {
+    $user_id = $_SESSION['user_id'];
+    $query = $conn->query("SELECT nama FROM users WHERE id = $user_id");
+    if ($query && $row = $query->fetch_assoc()) {
+        $nama = $row['nama'];
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -45,6 +56,10 @@
                 sayang. Sesungguhnya pada yang demikian itu benar-benar terdapat tanda-tanda bagi kaum yang berfikir."
                 (Ar-Rum : 21)
             </h3>
+            <h2 class="text-lg md:text-md max-w-3xl leading-snug drop-shadow-md font-bold">
+                <?= htmlspecialchars($nama) ?> kamu diundang
+            </h2>
+
             <a href="#konfirmasi"
                 class="mt-4 bg-[#ffe4d5] text-[#74583E] w-[250px] px-6 py-3 rounded-full font-bold hover:bg-gray-200 hover:text-black transition outline outline-1 outline-[#74583E]"
                 id="rsvp">
@@ -164,7 +179,7 @@
     </section>
 
     <!-- Konfirmasi Kehadiran Tamu -->
-    <section id="konfirmasi" class="py-16 px-4 md:px-32 bg-white scroll-mt-20">
+    <section id="konfirmasi" class="py-16 px-4 md:px-32 scroll-mt-20">
         <div class="flex flex-col md:flex-row gap-12 justify-center items-center">
             <!-- Teks RSVP -->
             <div class="flex-1">
@@ -183,12 +198,13 @@
             </div>
 
             <div class="flex-1 w-full max-w-xl">
-                <form action="includes\konfirmasi-user.php" method="POST" class="flex flex-col gap-6">
+                <form action="includes/konfirmasi-user.php" method="POST" class="flex flex-col gap-6">
                     <div>
-                        <label for="name"
+                        <label for="whishes"
                             class="block text-sm font-medium text-gray-800 mb-1 font-poppins">Wishes</label>
-                        <input type="text" id="name" name="name" placeholder="Berikan Ucapan Untuk Mempelai"
-                            class="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-black/30 font-poppins" />
+                        <input type="text" id="whishes" name="whishes" placeholder="Berikan Ucapan Untuk Mempelai"
+                            class="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-black/30 font-poppins"
+                            required />
                     </div>
                     <!-- Jumlah Tamu -->
                     <div>
@@ -196,7 +212,8 @@
                             Berapa orang yang akan hadir?
                         </label>
                         <select id="jumlahUndangan" name="jumlahUndangan"
-                            class="w-full px-4 py-2 rounded-md border border-gray-300 bg-white text-black focus:outline-none focus:ring-2 focus:ring-black/30 font-poppins">
+                            class="w-full px-4 py-2 rounded-md border border-gray-300 bg-white text-black focus:outline-none focus:ring-2 focus:ring-black/30 font-poppins"
+                            required>
                             <option value="" disabled selected>Pilih Jumlah Kehadiran (Maksimal 5)</option>
                             <option value="1">1 orang</option>
                             <option value="2">2 orang</option>
@@ -204,28 +221,39 @@
                             <option value="4">4 orang</option>
                             <option value="5">5 orang</option>
                         </select>
+
                     </div>
+                    <!-- Kehadiran -->
                     <div>
-                        <label class="block text-sm font-medium text-gray-800 mb-1 font-poppins">Apakah kamu akan hadir?</label>
-                        <div class="flex gap-4 mt-1">
-                            <label id="label-yes"
-                                class="mt-4 bg-[#ffe4d5] text-[#74583F] w-[250px] px-6 py-3 rounded font-bold hover:bg-gray-200 hover:text-black transition outline outline-1 outline-[#74583E]">
-                                <input type="radio" name="attendance" value="yes" class="hidden" id="yes"> Ya
+                        <label class="block text-sm font-medium text-gray-800 mb-1 font-poppins">
+                            Apakah kamu akan hadir?
+                        </label>
+                        <div class="flex flex-col sm:flex-row gap-4 mt-1">
+                            <label for="hadir" class="flex items-center gap-2 cursor-pointer">
+                                <input type="radio" name="kehadiran" id="hadir" value="hadir" required
+                                    class="accent-[#74583F] w-5 h-5">
+                                <span class="text-sm font-medium text-gray-700">Hadir</span>
                             </label>
-                            <label id="label-no"
-                                class="mt-4 bg-[#ffe4d5] text-[#74583F] w-[250px] px-6 py-3 rounded font-bold hover:bg-gray-200 hover:text-black transition outline outline-1 outline-[#74583E]">
-                                <input type="radio" name="attendance" value="no" class="hidden" id="no"> Tidak
+                            <label for="tidak_hadir" class="flex items-center gap-2 cursor-pointer">
+                                <input type="radio" name="kehadiran" id="tidak_hadir" value="tidak" required
+                                    class="accent-[#74583F] w-5 h-5">
+                                <span class="text-sm font-medium text-gray-700">Tidak Hadir</span>
                             </label>
                         </div>
-                        <p class="text-sm text-gray-500 mt-1 font-poppins">Silahkan pilih satu opsi</p>
                     </div>
-                    <button type="submit"
-                        class="mt-4 bg-[#ffe4d5] text-[#74583F] w-[250px] px-6 py-3 rounded font-bold hover:bg-gray-200 hover:text-black transition outline outline-1 outline-[#74583E]">Kirimkan Konfirmasi</button>
+
+                    <!-- Tombol Submit -->
+                    <div>
+                        <button type="submit"
+                            class="mt-6 w-full bg-[#74583E] text-white px-6 py-3 rounded-md font-bold hover:bg-[#5f4830] transition">
+                            Kirim Konfirmasi
+                        </button>
+                    </div>
 
                 </form>
             </div>
-
         </div>
+
     </section>
 
     <!-- Cerita Kami -->
@@ -317,6 +345,23 @@
         </div>
     </section>
 
+    <!-- Tampilan Whishes-->
+    <!-- Tampilan Whishes -->
+    <section id="whishes" class="py-16 px-8 mx-auto scroll-mt-20 bg-[#EDEDED]">
+        <h1 class="text-4xl font-bold text-[#74583E] mb-6 text-center" style="font-family: 'Great Vibes', cursive;">
+            Ucapan & Doa Dari Sahabat
+        </h1>
+
+        <div class="w-full py-4 px-4 m-6 outline outline-1 outline-[#74583E]">
+            <h2 class="text-sm text-gray-700 text-center font-medium mb-4">
+                Kami sangat menghargai setiap ucapan dan doa dari sahabat-sahabat kami.
+                Berikut adalah beberapa ucapan yang telah kami terima:
+            </h2>
+            <div class="space-y-4">
+                <?php include('includes/whishes-output.php'); ?>
+            </div>
+        </div>
+    </section>
 
 
     <script>
@@ -346,6 +391,8 @@
             noRadio.addEventListener('change', updateSelection);
         });
 
+        // Slideshow untuk foto
+        // Ganti gambar setiap 3 detik
         const images = [
             'public/img/asset/background1.jpeg',
             'public/img/asset/foto1.jpg',
@@ -360,6 +407,34 @@
             slideshow.src = images[currentIndex];
         }, 3000); 
     </script>
+
+    <!-- Alert Ketika sudah submit-->
+    <?php if (isset($_GET['status']) && $_GET['status'] === 'success'): ?>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Sukses!',
+                text: '<?= $_GET['message'] ?>',
+                showCancelButton: <?= isset($_GET['pdf_file']) ? 'true' : 'false' ?>,
+                confirmButtonText: 'Download PDF',
+                cancelButtonText: 'Tutup'
+            }).then((result) => {
+                if (result.isConfirmed && <?= isset($_GET['pdf_file']) ? 'true' : 'false' ?>) {
+                    window.open('<?= $_GET['pdf_file'] ?>', '_blank');
+                }
+            });
+        </script>
+    <?php elseif (isset($_GET['status']) && $_GET['status'] === 'error'): ?>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Gagal!',
+                text: '<?= $_GET['message'] ?>'
+            });
+        </script>
+    <?php endif; ?>
 
 </body>
 

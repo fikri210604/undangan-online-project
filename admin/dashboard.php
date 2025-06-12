@@ -37,6 +37,9 @@ if ($jumlahBelumKonfirmasi < 0) {
     $jumlahBelumKonfirmasi = 0;
 }
 
+// Sisa Kursi
+$sisaKursi = 500 - $jumlahHadir;
+
 ?>
 
 
@@ -113,6 +116,20 @@ if ($jumlahBelumKonfirmasi < 0) {
                         </div>
                     </div>
                 </div>
+
+                <!-- Sisa Kursi-->
+                <div class="col-md-3">
+                    <div class="card shadow-sm border-0">
+                        <div class="card-body text-center">
+                            <div class="mb-3">
+                                <i class="bi bi-question-circle-fill text-warning" style="font-size: 2.5rem;"></i>
+                            </div>
+                            <h6 class="card-title text-muted">Sisa Kursi</h6>
+                            <p class="display-6 fw-bold text-warning"><?php echo $sisaKursi; ?></p>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>

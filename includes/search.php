@@ -15,6 +15,7 @@ if (isset($_GET["cari"]) && trim($_GET["cari"]) !== '') {
 
     echo '<p id="pesan-kosong" class="text-center text-gray-700 mt-6 font-semibold" style="display:none;">Masukkan Nama Anda.</p>';
 
+    // Nampilkan notifikasi jika ada hasil berupa nama dan link untuk login
     if (mysqli_num_rows($result) > 0) {
         echo '<div class="space-y-6 mt-6" id="container-notifikasi">';
         while ($row = mysqli_fetch_assoc($result)) {

@@ -15,8 +15,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($user = mysqli_fetch_assoc($result)) {
             if (password_verify($password, $user["password"])) {
                 $_SESSION['login'] = true;
-                $_SESSION['user_id'] = $user['id']; // penting untuk validasi
-                $_SESSION['role'] = strtolower($user['role']); // pastikan lowercase
+                $_SESSION['user_id'] = $user['id']; 
+                $_SESSION['role'] = strtolower($user['role']);
 
                 // Redirect berdasarkan role
                 if ($_SESSION['role'] === 'admin') {
@@ -28,16 +28,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 }
                 exit;
             } else {
-                echo "Password salah.";
+                $_SESSION["error"] = 'Password salah!';
+                header("Location: ../../login.php");
             }
         } else {
-            echo "Username tidak ditemukan.";
+            $_SESSION["error"] = "Username tidak ditemukan.";
+            header("Location: ../../login.php");
         }
 
         mysqli_stmt_close($stmt);
         mysqli_close($conn);
     } else {
-        echo "Mohon isi username dan password.";
+        $_SESSION["error"] = "Username dan password harus diisi.";
+        header("Location: ../../login.php");
     }
 }
 ?>
