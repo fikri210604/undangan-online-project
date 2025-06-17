@@ -133,8 +133,5 @@ $sisaKursi = 500 - $jumlahHadir;
             </div>
         </div>
     </div>
-
 </body>
-
-
 </html>

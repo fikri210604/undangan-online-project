@@ -17,11 +17,10 @@ $status_konfirmasi = strtolower($_POST['kehadiran'] ?? '');
 $user_id = $_SESSION['user_id'];
 $waktu_konfirmasi = date("Y-m-d H:i:s");
 
-// Ambil data user dari tabel users
 $user = $conn->query("SELECT * FROM users WHERE id = $user_id")->fetch_assoc();
 $user_email = $user['email'] ?? '';
 
-// Ambil kode_unik dari tabel tamu berdasarkan email user
+// Mengambil Kode unik dari user
 $stmtKodeUnik = $conn->prepare("SELECT kode_unik FROM users WHERE email = ?");
 $stmtKodeUnik->bind_param("s", $user_email);
 $stmtKodeUnik->execute();
@@ -29,7 +28,7 @@ $result = $stmtKodeUnik->get_result();
 $tamu = $result->fetch_assoc();
 $kode_unik = $tamu['kode_unik'] ?? '';
 
-// Pastikan entri konfirmasi sudah ada, jika belum, buat dulu
+// Memastikan konfirmasi kehadiran sudah ada
 $cek = $conn->query("SELECT * FROM konfirmasi WHERE user_id = $user_id")->num_rows;
 if ($cek == 0) {
     $stmtInsert = $conn->prepare("INSERT INTO konfirmasi (user_id, kode_unik) VALUES (?, ?)");
@@ -37,7 +36,7 @@ if ($cek == 0) {
     $stmtInsert->execute();
 }
 
-// ================= FUNCTION =================
+// ================= FUNCTION Generate Nomor Kursi, Kode QR, dan Undangan PDF =================
 function generate_nomor_kursi($conn) {
     $max_kursi = 500;
     do {
@@ -80,16 +79,15 @@ function generate_undangan_pdf($nomor_kursi, $qr_path) {
     return $pdf_path;
 }
 
-// ================= PROSES =================
+// ================= Konfirmasi Kehadiran =================
 if ($status_konfirmasi === 'hadir') {
-    // Cek apakah kursi sudah penuh
     $countHadir = $conn->query("SELECT COUNT(*) as total FROM konfirmasi WHERE status = 'Hadir'")->fetch_assoc()['total'];
     if ($countHadir >= 500) {
         header("Location: ../landing.php?status=error&message=Kursi penuh. Tidak bisa menerima konfirmasi hadir lagi.");
         exit;
     }
 
-    // Generate semua data
+    // Memanggil Fungsi
     $nomor_kursi = generate_nomor_kursi($conn);
     $qr_code_path = generate_qr_code($nomor_kursi);
     $pdf_path = generate_undangan_pdf($nomor_kursi, $qr_code_path);
