@@ -13,7 +13,7 @@ if (!isset($_SESSION['user_id'])) {
 }
 
 $whishes = $_POST['whishes'] ?? '';
-$jumlah_kursi = $_POST['jumlah_kursi'] ?? 0;
+$jumlah_kursi = $_POST['jumlah_kursi'];
 $status_konfirmasi = strtolower($_POST['kehadiran'] ?? '');
 $user_id = $_SESSION['user_id'];
 $waktu_konfirmasi = date("Y-m-d H:i:s");
@@ -45,7 +45,6 @@ function generate_nomor_kursi($conn, $jumlah_kursi)
 
     $result = $conn->query("SELECT nomor_kursi FROM konfirmasi WHERE nomor_kursi IS NOT NULL AND status = 'Hadir'");
     while ($row = $result->fetch_assoc()) {
-        // Tangani kasus jika data adalah list: 101,102
         $nomor = explode(',', $row['nomor_kursi']);
         foreach ($nomor as $n) {
             $n = trim($n);
@@ -60,7 +59,6 @@ function generate_nomor_kursi($conn, $jumlah_kursi)
         return false;
     }
 
-    // Generate nomor kursi baru yang belum digunakan
     $nomor_kursi_baru = [];
     while (count($nomor_kursi_baru) < $jumlah_kursi) {
         $nomor = rand(1, $max_kursi);
@@ -69,7 +67,7 @@ function generate_nomor_kursi($conn, $jumlah_kursi)
         }
     }
 
-    return $nomor_kursi_baru; // array of numbers, misal [198, 291]
+    return $nomor_kursi_baru;
 }
 
 
@@ -128,8 +126,9 @@ if ($status_konfirmasi === 'hadir') {
     $_SESSION['success'] = true;
 
     // Update kehadiran
-    $stmt = $conn->prepare("UPDATE konfirmasi SET status = ?, waktu_konfirmasi = ?, nomor_kursi = ?, qr_code_path = ?, pdf_path = ?, whishes = ? WHERE user_id = ?");
+    $stmt = $conn->prepare("UPDATE konfirmasi SET status = ?, waktu_konfirmasi = ?, nomor_kursi = ?, jumlah_kursi = ?, qr_code_path = ?, pdf_path = ?, whishes = ? WHERE user_id = ?");
     $status_konfirmasi = 'Hadir';
+    $stmt->bind_param("sssissi", $status_konfirmasi, $waktu_konfirmasi, $nomor_kursi, $jumlah_kursi, $qr_code_path, $pdf_path, $whishes, $user_id);
     $stmt->bind_param("ssssssi", $status_konfirmasi, $waktu_konfirmasi, $nomor_kursi, $qr_code_path, $pdf_path, $whishes, $user_id);
     $stmt->execute();
 
@@ -140,7 +139,7 @@ if ($status_konfirmasi === 'hadir') {
     $status_konfirmasi = 'Tidak Hadir';
 
     // Update status jadi Tidak Hadir
-    $stmt = $conn->prepare("UPDATE konfirmasi SET status = ?, waktu_konfirmasi = ?, nomor_kursi = NULL, qr_code_path = NULL, pdf_path = NULL, whishes = ? WHERE user_id = ?");
+    $stmt = $conn->prepare("UPDATE konfirmasi SET status = ?, waktu_konfirmasi = ?, whishes = ? WHERE user_id = ?");
     $stmt->bind_param("sssi", $status_konfirmasi, $waktu_konfirmasi, $whishes, $user_id);
     $stmt->execute();
 
