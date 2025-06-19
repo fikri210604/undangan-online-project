@@ -15,3 +15,15 @@ Sistem ini hadir sebagai solusi digital untuk menggantikan undangan fisik. Tamu 
 > - Muhammad Alvin – 2317051040  
 > - Rahayu Indah Lestari – 2317051073  
 > 🏫 *Universitas*: Universitas Lampung, Prodi Ilmu Komputer – 2024/2025
+
+## ⚙️ Teknologi yang Digunakan
+
+| Komponen         | Teknologi                         |
+|------------------|------------------------------------|
+| Backend          | PHP Native                         |
+| Frontend         | HTML, CSS, Bootstrap, Tailwind CSS |
+| Database         | MySQL                              |
+| PDF Generator    | FPDF / DomPDF                      |
+| QR Code          | PHP QR Code Library                |
+| Email Sender     | PHPMailer                          |
+| Local Server     | Laragon (Apache + MySQL)           |
