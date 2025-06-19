@@ -28,6 +28,32 @@ Sistem ini hadir sebagai solusi digital untuk menggantikan undangan fisik. Tamu 
 | Email Sender     | PHPMailer                          |
 | Local Server     | Laragon (Apache + MySQL)           |
 
+## ⚙️ Cara Instalasi (Localhost)
+1. Clone repository ini ke folder Laragon:
+   ```bash
+   git clone https://github.com/fikri210604/undangan-online-project.git
+
+2. Pindahkan ke direktori:
+   ```bash
+C:\laragon\www\undangan-online
+
+3. Import database proyek_akhir_web.sql ke phpMyAdmin
+
+4. Konfigurasi file includes/db.php:
+   ```bash
+   $host = "localhost";
+$user = "root";
+$pass = "";
+$db   = "proyek_akhir_web";
+
+5.Jalankan di browser:
+   ```bash
+   http://localhost/undangan-online
+
+6. Login Admin:
+```bash
+Email: admin@undangan.com
+Password: admin123
 
 
 
