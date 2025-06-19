@@ -16,6 +16,26 @@ Sistem ini hadir sebagai solusi digital untuk menggantikan undangan fisik. Tamu 
 > - Rahayu Indah Lestari – 2317051073  
 > 🏫 *Universitas*: Universitas Lampung, Prodi Ilmu Komputer – 2024/2025
 
+---
+
+## 📸 Tampilan Antarmuka
+![image](https://github.com/user-attachments/assets/5df71e5c-37c9-4688-9d2f-032b7132e30b)
+
+![image](https://github.com/user-attachments/assets/b2a41d4d-fc73-4adb-b7a0-b006f487f95c)
+
+![image](https://github.com/user-attachments/assets/f3697e6a-fac3-43a3-8c6f-354d61f42fcc)
+
+![image](https://github.com/user-attachments/assets/6f628130-5cd7-46e0-a22c-f27511349b0d)
+
+![image](https://github.com/user-attachments/assets/d81fa527-bc6a-49fb-a65b-e39a16c4c323)
+
+![image](https://github.com/user-attachments/assets/e9fc4e28-8890-44a5-9257-1b3685ef4286)
+
+![image](https://github.com/user-attachments/assets/197d5818-ea30-4939-b388-e48f7405b978)
+
+![image](https://github.com/user-attachments/assets/66e23f05-5172-4a1b-988d-041f4cc91721)
+
+
 ## 🛠 Teknologi yang Digunakan
 
 | Komponen         | Teknologi                         |
@@ -54,17 +74,6 @@ $db   = "proyek_akhir_web";
 ```bash
 Email: admin@undangan.com
 Password: admin123
----
-
-## 📸 Tampilan Antarmuka
-![image](https://github.com/user-attachments/assets/64d3865b-e619-4738-af37-3bc7e4c49d0c)
-![image](https://github.com/user-attachments/assets/80cfa639-fd99-414b-bb51-6089dbe803a9)
-![image](https://github.com/user-attachments/assets/049500e4-ad55-4668-95ef-3e9c047afffb)
-![image](https://github.com/user-attachments/assets/badb2801-561b-4962-abfc-c8aae9f06492)
-![image](https://github.com/user-attachments/assets/a16c8721-1309-4a7c-b82f-3e2300227f33)
-![image](https://github.com/user-attachments/assets/93802b7e-3952-43c1-980c-7ac1afcf50ca)
-![image](https://github.com/user-attachments/assets/8282d783-7f59-4210-a783-735a42125cea)
-![image](https://github.com/user-attachments/assets/95c31d8a-81d7-4acc-bc15-91ed2aab6076)
 
 ---
 ##📄 Lisensi
