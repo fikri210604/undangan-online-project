@@ -54,6 +54,29 @@ $db   = "proyek_akhir_web";
 ```bash
 Email: admin@undangan.com
 Password: admin123
+---
+
+## 📸 Tampilan Antarmuka
+
+| Form Konfirmasi Kehadiran | QR Code Tiket Digital |
+|---------------------------|------------------------|
+| ![form](https://github.com/user-attachments/assets/ea7d4339-2dff-4670-9ce7-dffbc414372f) | ![qr-code](https://github.com/user-attachments/assets/497c2813-926c-48aa-9389-45f704f59dcd) |
+
+| Dashboard Admin | Daftar Tamu |
+|-----------------|-------------|
+| ![dashboard](https://github.com/user-attachments/assets/acb42823-c96c-45ff-8c31-0789fab4066a) | ![tamu](https://github.com/user-attachments/assets/7dcd39f2-7621-4417-89fc-89286a4c8673) |
+
+| Tambah Tamu | Filter Berdasarkan Kolom |
+|-------------|--------------------------|
+| ![tambah](https://github.com/user-attachments/assets/d97e8bda-39a1-4e43-9963-59fa20d71a84) | ![filter](https://github.com/user-attachments/assets/c99a604e-bba1-460c-b4c9-7fe7dd1e9a27) |
+
+| Detail Tiket | Scan Kehadiran |
+|--------------|----------------|
+| ![ticket](https://github.com/user-attachments/assets/59aaa1d0-9ba5-48c6-8068-81619afa2e28) | ![scan](https://github.com/user-attachments/assets/af65e9d6-afca-46c0-9aa0-89dc211d3cd3) |
+
+---
+##📄 Lisensi
+Proyek ini dikembangkan untuk keperluan akademik dan pembelajaran.
 
 
 
