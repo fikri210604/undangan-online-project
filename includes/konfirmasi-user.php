@@ -42,18 +42,25 @@ function generate_nomor_kursi($conn, $jumlah_kursi)
 {
     $max_kursi = 500;
     $nomor_kursi_terpakai = [];
+
     $result = $conn->query("SELECT nomor_kursi FROM konfirmasi WHERE nomor_kursi IS NOT NULL AND status = 'Hadir'");
     while ($row = $result->fetch_assoc()) {
+        // Tangani kasus jika data adalah list: 101,102
         $nomor = explode(',', $row['nomor_kursi']);
         foreach ($nomor as $n) {
-            $nomor_kursi_terpakai[] = (int) trim($n);
+            $n = trim($n);
+            if (is_numeric($n) && $n !== '') {
+                $nomor_kursi_terpakai[] = (int) $n;
+            }
         }
     }
-    $tersedia = 500 - count($nomor_kursi_terpakai);
+
+    $tersedia = $max_kursi - count($nomor_kursi_terpakai);
     if ($jumlah_kursi > $tersedia) {
-        return false; 
+        return false;
     }
 
+    // Generate nomor kursi baru yang belum digunakan
     $nomor_kursi_baru = [];
     while (count($nomor_kursi_baru) < $jumlah_kursi) {
         $nomor = rand(1, $max_kursi);
@@ -62,8 +69,9 @@ function generate_nomor_kursi($conn, $jumlah_kursi)
         }
     }
 
-    return $nomor_kursi_baru; 
+    return $nomor_kursi_baru; // array of numbers, misal [198, 291]
 }
+
 
 
 function generate_qr_code($nomor_kursi)
@@ -106,8 +114,12 @@ if ($status_konfirmasi === 'hadir') {
         exit;
     }
 
-    // Memanggil Fungsi
-    $nomor_kursi = generate_nomor_kursi($conn, $jumlah_kursi);
+    $nomor_kursi_array = generate_nomor_kursi($conn, $jumlah_kursi);
+    if ($nomor_kursi_array === false) {
+        header("Location: ../landing.php?status=error&message=Jumlah kursi tidak mencukupi.");
+        exit;
+    }
+    $nomor_kursi = implode(',', $nomor_kursi_array);
     $qr_code_path = generate_qr_code($nomor_kursi);
     $pdf_path = generate_undangan_pdf($nomor_kursi, $qr_code_path);
 
@@ -118,7 +130,7 @@ if ($status_konfirmasi === 'hadir') {
     // Update kehadiran
     $stmt = $conn->prepare("UPDATE konfirmasi SET status = ?, waktu_konfirmasi = ?, nomor_kursi = ?, qr_code_path = ?, pdf_path = ?, whishes = ? WHERE user_id = ?");
     $status_konfirmasi = 'Hadir';
-    $stmt->bind_param("ssisssi", $status_konfirmasi, $waktu_konfirmasi, $nomor_kursi, $qr_code_path, $pdf_path, $whishes, $user_id);
+    $stmt->bind_param("ssssssi", $status_konfirmasi, $waktu_konfirmasi, $nomor_kursi, $qr_code_path, $pdf_path, $whishes, $user_id);
     $stmt->execute();
 
     header("Location: ../landing.php?status=success&message=Konfirmasi berhasil!&pdf_file=" . urlencode($pdf_path));
