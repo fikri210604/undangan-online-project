@@ -2,11 +2,8 @@
 include("db.php");
 
 if (isset($_GET["cari"]) && trim($_GET["cari"]) !== '') {
-    // Decode base64 dulu
-    $key = base64_decode($_GET["cari"]);
-
     // Amankan input setelah decode dengan real_escape_string
-    $key = mysqli_real_escape_string($conn, $key);
+    $key = mysqli_real_escape_string($conn, trim($_GET["cari"]));
 
     $stmt = mysqli_prepare($conn, "SELECT * FROM users WHERE kode_unik = ?");
     mysqli_stmt_bind_param($stmt, "s", $key);
