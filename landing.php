@@ -210,12 +210,12 @@ if (isset($_SESSION['user_id'])) {
                             class="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-black/30 font-poppins"
                             required />
                     </div>
-                    <!-- Jumlah Tamu -->
+                   <!-- Jumlah Tamu -->
                     <div>
-                        <label for="jumlahUndangan" class="block text-sm font-medium text-gray-800 mb-1 font-poppins">
+                        <label for="jumlah_kursi" class="block text-sm font-medium text-gray-800 mb-1 font-poppins">
                             Berapa orang yang akan hadir?
                         </label>
-                        <select id="jumlahUndangan" name="jumlahUndangan"
+                        <select id="jumlah_kursi" name="jumlah_kursi"
                             class="w-full px-4 py-2 rounded-md border border-gray-300 bg-white text-black focus:outline-none focus:ring-2 focus:ring-black/30 font-poppins"
                             required>
                             <option value="" disabled selected>Pilih Jumlah Kehadiran (Maksimal 5)</option>
