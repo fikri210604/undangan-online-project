@@ -1,6 +1,5 @@
 <?php
 session_start();
-var_dump($_SESSION); // DEBUG
 include 'asset/navbar.php';
 include_once 'includes/db.php';
 

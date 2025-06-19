@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jun 17, 2025 at 02:17 AM
+-- Generation Time: Jun 19, 2025 at 12:23 AM
 -- Server version: 8.0.30
 -- PHP Version: 8.3.17
 
@@ -20,6 +20,27 @@ SET time_zone = "+00:00";
 --
 -- Database: `proyek_akhir_web`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `galeri`
+--
+
+CREATE TABLE `galeri` (
+  `id` int NOT NULL,
+  `judul` varchar(255) DEFAULT NULL,
+  `deskripsi` text,
+  `gambar` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=geostd8;
+
+--
+-- Dumping data for table `galeri`
+--
+
+INSERT INTO `galeri` (`id`, `judul`, `deskripsi`, `gambar`) VALUES
+(2, 'ppp', 'mantap banget', 'galeri_1750280843.jpg'),
+(3, 'Pacaran 2025', 'mantapp', 'galeri_1750281050.jpeg');
 
 -- --------------------------------------------------------
 
@@ -45,7 +66,21 @@ CREATE TABLE `konfirmasi` (
 
 INSERT INTO `konfirmasi` (`id`, `user_id`, `status`, `waktu_konfirmasi`, `nomor_kursi`, `qr_code_path`, `pdf_path`, `kode_unik`, `whishes`) VALUES
 (5, 16, 'hadir', '2025-06-12 19:06:13', 198, '../public/qr-code/198.png', '../public/undangan_pdf/undangan_kursi_198.pdf', 'TAMU-FAN-6053', 'Selamat nikah'),
-(6, 4, 'hadir', '2025-06-12 20:13:19', 290, '../public/qr-code/290.png', '../public/undangan_pdf/undangan_kursi_290.pdf', 'TAMU-AHM-7655', 'selamat bangggg');
+(6, 4, 'hadir', '2025-06-12 20:13:19', 290, '../public/qr-code/290.png', '../public/undangan_pdf/undangan_kursi_290.pdf', 'TAMU-AHM-7655', 'selamat bangggg'),
+(7, 28, 'hadir', '2025-06-18 23:51:26', 84, '../public/qr-code/84.png', '../public/undangan_pdf/undangan_kursi_84.pdf', 'TAMU-B80EAC', 'Selamat nikah');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ucapan`
+--
+
+CREATE TABLE `ucapan` (
+  `id` int NOT NULL,
+  `konfirmasi_id` int DEFAULT NULL,
+  `ucapan` text,
+  `tanggal` datetime DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=geostd8;
 
 -- --------------------------------------------------------
 
@@ -82,11 +117,19 @@ INSERT INTO `users` (`id`, `nama`, `email`, `password`, `role`, `kode_unik`, `al
 (17, 'Ghiyo Co', 'giyo@gmail.com', '$2y$10$3h4fiN76mEGZ6Pw2xrNeHucy8Wys4y2WuDLjixwj1VfftS6D7XUhO', 'tamu', 'TAMU-GHI-1898', 'Kedaton'),
 (18, 'Edi Suratno', 'edisuratmin@gmail.com', '$2y$10$4g9jBd9T1vyKj0RhNSXYGedAqwddcbTlEGlUusc/smGyRquEdHHEa', 'tamu', 'TAMU-EDI-7113', 'Kedaton'),
 (20, 'Eka Sukamto', 'ekaeer@gmail.com', '$2y$10$hJIWo4NPrHXaRxSt0RCmoOIsm4.2ZLkiMgaXUO84c7mWNH3OXdmK2', 'tamu', 'TAMU-EKA-4754', 'Rajabasa'),
-(24, 'Erika Carlina', 'erii@gmail.com', NULL, 'tamu', 'TAMU-Erika Carlina-9979', 'Rajabasa');
+(24, 'Erika Carlina', 'erii@gmail.com', NULL, 'tamu', 'TAMU-Erika Carlina-9979', 'Rajabasa'),
+(27, 'Edi Sukamto', 'edisuratminn@gmail.com', '$2y$10$ux3SFGJJkMihpaN2Ha5yRu6JBngBkhbKKx3u/HPJ9TDi02CyI/bFm', 'tamu', 'TAMU-EEE051', 'Kedaton'),
+(28, 'Ahmad Hanif', '2317051061@students.unila.ac.id', '$2y$10$.vXatEnGrdVt9Bb/uV/24eLma7zKpbvVZ3gj9DkwfqqgfCWhqCBY2', 'tamu', 'TAMU-B80EAC', 'Kedaton');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `galeri`
+--
+ALTER TABLE `galeri`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `konfirmasi`
@@ -95,6 +138,13 @@ ALTER TABLE `konfirmasi`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `nomor_kursi` (`nomor_kursi`),
   ADD KEY `user_id` (`user_id`);
+
+--
+-- Indexes for table `ucapan`
+--
+ALTER TABLE `ucapan`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `konfirmasi_id` (`konfirmasi_id`);
 
 --
 -- Indexes for table `users`
@@ -108,16 +158,28 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `galeri`
+--
+ALTER TABLE `galeri`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `konfirmasi`
 --
 ALTER TABLE `konfirmasi`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `ucapan`
+--
+ALTER TABLE `ucapan`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- Constraints for dumped tables
@@ -128,6 +190,12 @@ ALTER TABLE `users`
 --
 ALTER TABLE `konfirmasi`
   ADD CONSTRAINT `konfirmasi_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+
+--
+-- Constraints for table `ucapan`
+--
+ALTER TABLE `ucapan`
+  ADD CONSTRAINT `ucapan_ibfk_1` FOREIGN KEY (`konfirmasi_id`) REFERENCES `konfirmasi` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
