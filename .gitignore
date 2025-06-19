@@ -1,4 +1,1 @@
 .env
-
-//file konfigurasi email
-includes/email-config.php
