@@ -204,7 +204,7 @@
                   <td>
                     <button class='btn btn-warning btn-sm me-1' data-bs-toggle='modal' data-bs-target='#editTamu{$row['id']}'><i class='bi bi-pencil-square'></i></button>
                     <a href='crud-tamu/hapus.php?id={$row['id']}' class='btn btn-danger btn-sm' onclick='return confirm(\"Hapus data ini?\")'><i class='bi bi-trash'></i></a>
-                    <a href='crud-tamu/kirim_email.php?id={$row['id']}' class='btn btn-primary btn-sm' target='_blank'><i class='bi bi-email'> Kirim Email</i></a>
+                    <a href='crud-tamu/kirim_email.php?id={$row['id']}' class='btn btn-primary btn-sm' target='_blank'><i class='bi bi-envelope-fill me-1'></i> Kirim Email</a>
                   </td>
                 </tr>
               ";

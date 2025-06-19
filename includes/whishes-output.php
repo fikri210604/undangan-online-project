@@ -12,7 +12,7 @@ $result = mysqli_query($conn, $query);
 
 if (mysqli_num_rows($result) > 0) {
     foreach ($result as $row) {
-        if (trim($row['ucapan']) === '') continue; // skip ucapan kosong
+        if (trim($row['ucapan']) === '') continue;
     
         echo '<div class="bg-white p-4 rounded-lg shadow-md">';
         echo '<h2 class="text-lg font-semibold text-[#74583E]">' . htmlspecialchars($row['nama']) . '</h2>';

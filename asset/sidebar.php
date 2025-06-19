@@ -9,7 +9,8 @@ $currentPage = basename($_SERVER['PHP_SELF'], '.php');
     <div class="d-flex align-items-center mb-3" style="gap: 10px;">
       <img src="../public/img/asset/logo.png" alt="Logo Admin Nikah" class="img-fluid"
         style="width: 50px; height: auto;">
-      <h4 class="text-white m-0" id="sidebarTitle" style="font-family: 'Montserrat', cursive; font-size: 20px;">Admin Nikah</h4>
+      <h4 class="text-white m-0" id="sidebarTitle" style="font-family: 'Montserrat', cursive; font-size: 20px;">Admin
+        Nikah</h4>
     </div>
     <ul class="nav flex-column mt-3">
       <li class="nav-item">

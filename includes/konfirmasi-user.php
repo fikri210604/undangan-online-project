@@ -13,6 +13,7 @@ if (!isset($_SESSION['user_id'])) {
 }
 
 $whishes = $_POST['whishes'] ?? '';
+$jumlah_kursi = $_POST['jumlah_kursi'] ?? 0;
 $status_konfirmasi = strtolower($_POST['kehadiran'] ?? '');
 $user_id = $_SESSION['user_id'];
 $waktu_konfirmasi = date("Y-m-d H:i:s");
@@ -37,18 +38,33 @@ if ($cek == 0) {
 }
 
 // ================= FUNCTION Generate Nomor Kursi, Kode QR, dan Undangan PDF =================
-function generate_nomor_kursi($conn)
+function generate_nomor_kursi($conn, $jumlah_kursi)
 {
     $max_kursi = 500;
-    do {
-        $nomor_kursi = rand(1, $max_kursi);
-        $stmt = $conn->prepare("SELECT COUNT(*) as jumlah FROM konfirmasi WHERE nomor_kursi = ?");
-        $stmt->bind_param("i", $nomor_kursi);
-        $stmt->execute();
-        $result = $stmt->get_result()->fetch_assoc();
-    } while ($result['jumlah'] > 0);
-    return $nomor_kursi;
+    $nomor_kursi_terpakai = [];
+    $result = $conn->query("SELECT nomor_kursi FROM konfirmasi WHERE nomor_kursi IS NOT NULL AND status = 'Hadir'");
+    while ($row = $result->fetch_assoc()) {
+        $nomor = explode(',', $row['nomor_kursi']);
+        foreach ($nomor as $n) {
+            $nomor_kursi_terpakai[] = (int) trim($n);
+        }
+    }
+    $tersedia = 500 - count($nomor_kursi_terpakai);
+    if ($jumlah_kursi > $tersedia) {
+        return false; 
+    }
+
+    $nomor_kursi_baru = [];
+    while (count($nomor_kursi_baru) < $jumlah_kursi) {
+        $nomor = rand(1, $max_kursi);
+        if (!in_array($nomor, $nomor_kursi_terpakai) && !in_array($nomor, $nomor_kursi_baru)) {
+            $nomor_kursi_baru[] = $nomor;
+        }
+    }
+
+    return $nomor_kursi_baru; 
 }
+
 
 function generate_qr_code($nomor_kursi)
 {
@@ -91,14 +107,14 @@ if ($status_konfirmasi === 'hadir') {
     }
 
     // Memanggil Fungsi
-    $nomor_kursi = generate_nomor_kursi($conn);
+    $nomor_kursi = generate_nomor_kursi($conn, $jumlah_kursi);
     $qr_code_path = generate_qr_code($nomor_kursi);
     $pdf_path = generate_undangan_pdf($nomor_kursi, $qr_code_path);
 
     $_SESSION['pdf_path'] = str_replace('../public/', '', $pdf_path);
     $_SESSION['qr_code_path'] = str_replace('../public/', '', $qr_code_path);
     $_SESSION['success'] = true;
-    
+
     // Update kehadiran
     $stmt = $conn->prepare("UPDATE konfirmasi SET status = ?, waktu_konfirmasi = ?, nomor_kursi = ?, qr_code_path = ?, pdf_path = ?, whishes = ? WHERE user_id = ?");
     $status_konfirmasi = 'Hadir';
