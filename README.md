@@ -16,7 +16,7 @@ Sistem ini hadir sebagai solusi digital untuk menggantikan undangan fisik. Tamu 
 > - Rahayu Indah Lestari – 2317051073  
 > 🏫 *Universitas*: Universitas Lampung, Prodi Ilmu Komputer – 2024/2025
 
-## ⚙️ Teknologi yang Digunakan
+## 🛠 Teknologi yang Digunakan
 
 | Komponen         | Teknologi                         |
 |------------------|------------------------------------|
@@ -27,3 +27,9 @@ Sistem ini hadir sebagai solusi digital untuk menggantikan undangan fisik. Tamu 
 | QR Code          | PHP QR Code Library                |
 | Email Sender     | PHPMailer                          |
 | Local Server     | Laragon (Apache + MySQL)           |
+
+## ⚙️ Cara Instalasi (Localhost)
+1. Clone repository ini ke folder Laragon:
+   ```bash
+   git clone https://github.com/fikri210604/undangan-online-project.git
+
