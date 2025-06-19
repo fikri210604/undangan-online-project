@@ -57,22 +57,14 @@ Password: admin123
 ---
 
 ## 📸 Tampilan Antarmuka
-
-| Form Konfirmasi Kehadiran | QR Code Tiket Digital |
-|---------------------------|------------------------|
-| ![form](https://github.com/user-attachments/assets/ea7d4339-2dff-4670-9ce7-dffbc414372f) | ![qr-code](https://github.com/user-attachments/assets/497c2813-926c-48aa-9389-45f704f59dcd) |
-
-| Dashboard Admin | Daftar Tamu |
-|-----------------|-------------|
-| ![dashboard](https://github.com/user-attachments/assets/acb42823-c96c-45ff-8c31-0789fab4066a) | ![tamu](https://github.com/user-attachments/assets/7dcd39f2-7621-4417-89fc-89286a4c8673) |
-
-| Tambah Tamu | Filter Berdasarkan Kolom |
-|-------------|--------------------------|
-| ![tambah](https://github.com/user-attachments/assets/d97e8bda-39a1-4e43-9963-59fa20d71a84) | ![filter](https://github.com/user-attachments/assets/c99a604e-bba1-460c-b4c9-7fe7dd1e9a27) |
-
-| Detail Tiket | Scan Kehadiran |
-|--------------|----------------|
-| ![ticket](https://github.com/user-attachments/assets/59aaa1d0-9ba5-48c6-8068-81619afa2e28) | ![scan](https://github.com/user-attachments/assets/af65e9d6-afca-46c0-9aa0-89dc211d3cd3) |
+![image](https://github.com/user-attachments/assets/64d3865b-e619-4738-af37-3bc7e4c49d0c)
+![image](https://github.com/user-attachments/assets/80cfa639-fd99-414b-bb51-6089dbe803a9)
+![image](https://github.com/user-attachments/assets/049500e4-ad55-4668-95ef-3e9c047afffb)
+![image](https://github.com/user-attachments/assets/badb2801-561b-4962-abfc-c8aae9f06492)
+![image](https://github.com/user-attachments/assets/a16c8721-1309-4a7c-b82f-3e2300227f33)
+![image](https://github.com/user-attachments/assets/93802b7e-3952-43c1-980c-7ac1afcf50ca)
+![image](https://github.com/user-attachments/assets/8282d783-7f59-4210-a783-735a42125cea)
+![image](https://github.com/user-attachments/assets/95c31d8a-81d7-4acc-bc15-91ed2aab6076)
 
 ---
 ##📄 Lisensi
