@@ -28,8 +28,9 @@ Sistem ini hadir sebagai solusi digital untuk menggantikan undangan fisik. Tamu 
 | Email Sender     | PHPMailer                          |
 | Local Server     | Laragon (Apache + MySQL)           |
 
-## ⚙️ Cara Instalasi (Localhost)
-1. Clone repository ini ke folder Laragon:
-   ```bash
-   git clone https://github.com/fikri210604/undangan-online-project.git
+
+
+
+
+
 
