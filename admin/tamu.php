@@ -52,7 +52,7 @@
 
   <div class="container py-4">
     <div class="d-flex justify-content-between align-items-center mb-4">
-      <h2 class="fw-bold text-primary">Manajemen Data User</h2>
+      <h2 class="fw-bold text-dark">Manajemen Data User</h2>
       <button type="button" class="btn btn-success shadow-sm" data-bs-toggle="modal" data-bs-target="#tambahTamu">
         <i class="bi bi-plus-circle me-1"></i> Tambah User
       </button>
