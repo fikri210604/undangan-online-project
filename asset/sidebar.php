@@ -25,9 +25,15 @@ $currentPage = basename($_SERVER['PHP_SELF'], '.php');
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link text-white mt-3 mb-3 <?= ($currentPage == 'konfirmasi') ? 'active bg-primary rounded' : '' ?> "
+        <a class="nav-link text-white mt-3 <?= ($currentPage == 'konfirmasi') ? 'active bg-primary rounded' : '' ?> "
           href="konfirmasi.php">
           <i class="bi bi-check2-circle"></i> <span class="link-text"> Konfirmasi</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white mt-3 mb-3 <?= ($currentPage == 'galeri') ? 'active bg-primary rounded' : '' ?> "
+          href="galeri.php">
+          <i class="bi bi-images"></i> <span class="link-text"> Galeri</span>
         </a>
       </li>
       <li class="nav-item">

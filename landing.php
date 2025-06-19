@@ -1,7 +1,8 @@
-<?php 
+<?php
 session_start();
+var_dump($_SESSION); // DEBUG
 include 'asset/navbar.php';
-include 'includes/db.php';
+include_once 'includes/db.php';
 
 $nama = '';
 if (isset($_SESSION['user_id'])) {
@@ -189,14 +190,18 @@ if (isset($_SESSION['user_id'])) {
                 <p class="text-base text-gray-700 font-poppins mb-6">
                     Silahkan berikan konfirmasi kehadiran, apakah akan hadir atau tidak.
                 </p>
+
                 <!-- Slideshow Foto -->
+                <?php
+                $folder = 'public/img/galeri';
+                $files = glob($folder . '/*.{jpg,jpeg,png,gif,webp}', GLOB_BRACE);
+                ?>
                 <div
                     class="relative w-72 h-72 rounded-xl overflow-hidden shadow-lg border-2 border-[#74583F] transform -translate-x-3">
-                    <img id="slideshow" src="public/img/asset/background.jpeg" alt="Foto Mempelai"
-                        class="w-full h-full object-cover transition duration-500 ease-in-out">
+                    <img id="slideshow" src="<?= !empty($files) ? $files[0] : 'public/img/default.jpg' ?>"
+                        alt="Foto Galeri" class="w-full h-full object-cover transition duration-500 ease-in-out">
                 </div>
             </div>
-
             <div class="flex-1 w-full max-w-xl">
                 <form action="includes/konfirmasi-user.php" method="POST" class="flex flex-col gap-6">
                     <div>
@@ -274,7 +279,7 @@ if (isset($_SESSION['user_id'])) {
                 <div class="flex justify-between items-center mb-12">
                     <div class="w-5/12">
                         <div class="bg-white rounded-lg p-6 outline outline-1 outline-[#74583E] ">
-                            <h3 class="text-xl font-bold text-gray-800" style="font-family: 'monserrat', light;">SDN
+                            <h3 class="text-sm font-bold text-gray-800" style="font-family: 'monserrat', light;">SDN
                                 Harapan Jaya</h3>
                             <p class="mt-2 text-gray-500 text-sm">Segalanya bermula di bangku SD. Saat itu, aku masih
                                 belum mengenal arti cinta. Tapi, ada satu teman bernama Naya yang selalu duduk di bangku
@@ -345,9 +350,55 @@ if (isset($_SESSION['user_id'])) {
         </div>
     </section>
 
-    <!-- Tampilan Whishes-->
+    <!-- Galeri Foto -->
+    <section id="galeri" class="py-16 bg-[#EDEDED]">
+        <h1 class="text-4xl font-bold text-[#74583E] mb-6 text-center" style="font-family: 'Great Vibes', cursive;">
+            Galeri Foto
+        </h1>
+        <p class="text-sm text-black text-center font-medium mb-10">
+            Berikut adalah beberapa momen indah yang telah kami abadikan.
+        </p>
+
+        <!-- Wrapper dengan padding & lebar maksimal -->
+        <div class="px-4 md:px-10 max-w-screen-xl mx-auto overflow-hidden w-full">
+            <div class="galeri-track flex gap-3 animate-scroll-loop">
+                <?php
+                $folder = 'public/img/galeri';
+                $files = glob($folder . '/*.{jpg,jpeg,png,gif,webp}', GLOB_BRACE);
+                for ($i = 0; $i < 3; $i++) {
+                    foreach ($files as $file) {
+                        $basename = basename($file);
+                        echo '<div class="w-1/4 flex-shrink-0">';
+                        echo '<img src="' . $folder . '/' . $basename . '" class="w-full h-48 object-cover rounded-md shadow-md" alt="Galeri">';
+                        echo '</div>';
+                    }
+                }
+                ?>
+            </div>
+        </div>
+        <!-- CSS untuk animasi scroll -->
+        <style>
+            .animate-scroll-loop {
+                animation: scroll-left 60s linear infinite;
+                width: max-content;
+                display: flex;
+            }
+
+            @keyframes scroll-left {
+                0% {
+                    transform: translateX(0%);
+                }
+
+                100% {
+                    transform: translateX(-33.333%);
+                }
+            }
+        </style>
+    </section>
+
+
     <!-- Tampilan Whishes -->
-    <section id="whishes" class="py-16 px-8 mx-auto scroll-mt-20 bg-[#EDEDED]">
+    <section id="whishes" class="py-16 px-8 mx-auto scroll-mt-20">
         <h1 class="text-4xl font-bold text-[#74583E] mb-6 text-center" style="font-family: 'Great Vibes', cursive;">
             Ucapan & Doa Dari Sahabat
         </h1>
@@ -365,6 +416,7 @@ if (isset($_SESSION['user_id'])) {
 
 
     <script>
+        // Fungsi untuk memencet radio button
         document.addEventListener('DOMContentLoaded', function () {
             const yesRadio = document.getElementById('yes');
             const noRadio = document.getElementById('no');
@@ -390,22 +442,27 @@ if (isset($_SESSION['user_id'])) {
             yesRadio.addEventListener('change', updateSelection);
             noRadio.addEventListener('change', updateSelection);
         });
+        // Slideshow untuk gambar-gambar
+        document.addEventListener("DOMContentLoaded", function () {
+            const images = <?php echo json_encode($files); ?>;
+            let currentIndex = 0;
+            const slideshow = document.getElementById('slideshow');
 
-        // Slideshow untuk foto
-        // Ganti gambar setiap 3 detik
-        const images = [
-            'public/img/asset/background1.jpeg',
-            'public/img/asset/foto1.jpg',
-            'public/img/asset/foto2.jpg'
-        ];
+            if (slideshow && images.length > 0) {
+                setInterval(() => {
+                    slideshow.classList.remove('opacity-100');
+                    slideshow.classList.add('opacity-0');
 
-        let currentIndex = 0;
-        const slideshow = document.getElementById('slideshow');
+                    setTimeout(() => {
+                        currentIndex = (currentIndex + 1) % images.length;
+                        slideshow.src = images[currentIndex];
 
-        setInterval(() => {
-            currentIndex = (currentIndex + 1) % images.length;
-            slideshow.src = images[currentIndex];
-        }, 3000); 
+                        slideshow.classList.remove('opacity-0');
+                        slideshow.classList.add('opacity-100');
+                    }, 300);
+                }, 3000);
+            }
+        });
     </script>
 
     <!-- Alert Ketika sudah submit-->

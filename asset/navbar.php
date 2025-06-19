@@ -27,7 +27,7 @@
             <ul id="mobile-menu"
                 class="hidden w-full md:flex md:w-auto flex-col md:flex-row items-center gap-4 mt-4 md:mt-0 font-medium">
                 <!-- Menu Links saat sudah login -->
-                <?php if (isset($_SESSION['login']) && $_SESSION['login'] === true): ?>
+                <?php if (isset($_SESSION['login']) && $_SESSION['login'] === true && isset($_SESSION['pdf_path'])): ?>
                     <li><a href="#undangan"
                             class="nav-link block py-2 px-4 text-gray-700 hover:text-[#74583E] md:p-0">Undangan</a></li>
                     <li><a href="#acara" class="nav-link block py-2 px-4 text-gray-700 hover:text-[#74583E] md:p-0">Jadwal &
@@ -35,21 +35,12 @@
                     <li><a href="#konfirmasi"
                             class="nav-link block py-2 px-4 text-gray-700 hover:text-[#74583E] md:p-0">Konfirmasi
                             Kehadiran</a></li>
-
-                    <?php if (isset($_SESSION['pdf_generated']) && $_SESSION['pdf_generated'] === true): ?>
-                        <li>
-                            <a href="download_pdf.php"
-                                class="inline-flex items-center py-2 px-4 bg-green-600 text-white rounded-lg hover:bg-green-700 transition duration-200 shadow-md hover:shadow-lg"
-                                title="Download Undangan PDF">
-                                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                                </svg>
-                                Download PDF
-                            </a>
-                        </li>
-                    <?php endif; ?>
-
+                    <li class="nav-item">
+                        <a href="public/<?= htmlspecialchars($_SESSION['pdf_path']) ?>" class="nav-link text-danger"
+                            download>
+                            <i class="bi bi-file-earmark-pdf-fill"></i> Download PDF
+                        </a>
+                    </li>
                     <li>
                         <a href="logout.php"
                             class="py-2 px-4 bg-rose-500 text-white rounded-lg hover:bg-rose-600 transition duration-200 shadow-md hover:shadow-lg">

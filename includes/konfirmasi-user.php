@@ -37,7 +37,8 @@ if ($cek == 0) {
 }
 
 // ================= FUNCTION Generate Nomor Kursi, Kode QR, dan Undangan PDF =================
-function generate_nomor_kursi($conn) {
+function generate_nomor_kursi($conn)
+{
     $max_kursi = 500;
     do {
         $nomor_kursi = rand(1, $max_kursi);
@@ -49,7 +50,8 @@ function generate_nomor_kursi($conn) {
     return $nomor_kursi;
 }
 
-function generate_qr_code($nomor_kursi) {
+function generate_qr_code($nomor_kursi)
+{
     $qr_dir = "../public/qr-code/";
     if (!file_exists($qr_dir))
         mkdir($qr_dir, 0777, true);
@@ -58,7 +60,8 @@ function generate_qr_code($nomor_kursi) {
     return $qr_path;
 }
 
-function generate_undangan_pdf($nomor_kursi, $qr_path) {
+function generate_undangan_pdf($nomor_kursi, $qr_path)
+{
     $pdf_dir = "../public/undangan_pdf/";
     if (!file_exists($pdf_dir))
         mkdir($pdf_dir, 0777, true);
@@ -92,6 +95,10 @@ if ($status_konfirmasi === 'hadir') {
     $qr_code_path = generate_qr_code($nomor_kursi);
     $pdf_path = generate_undangan_pdf($nomor_kursi, $qr_code_path);
 
+    $_SESSION['pdf_path'] = str_replace('../public/', '', $pdf_path);
+    $_SESSION['qr_code_path'] = str_replace('../public/', '', $qr_code_path);
+    $_SESSION['success'] = true;
+    
     // Update kehadiran
     $stmt = $conn->prepare("UPDATE konfirmasi SET status = ?, waktu_konfirmasi = ?, nomor_kursi = ?, qr_code_path = ?, pdf_path = ?, whishes = ? WHERE user_id = ?");
     $status_konfirmasi = 'Hadir';

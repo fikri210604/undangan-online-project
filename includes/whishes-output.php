@@ -1,7 +1,5 @@
 <?php
-include("db.php");
-
-// Ambil data nama dan ucapan
+// Database nama dan ucapan
 $query = "SELECT users.nama, konfirmasi.whishes AS ucapan 
           FROM konfirmasi 
           JOIN users ON konfirmasi.user_id = users.id 

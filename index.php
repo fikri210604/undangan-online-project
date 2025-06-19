@@ -1,7 +1,8 @@
-<?php include 'asset/navbar.php'; 
+<?php include 'asset/navbar.php';
 
-if(isset($_SESSION['login'])){
-    header("Location: landing.php");}
+if (isset($_SESSION['login'])) {
+    header("Location: landing.php");
+}
 ?>
 
 
@@ -171,7 +172,8 @@ if(isset($_SESSION['login'])){
             Temukan Nama Anda
             <i class="fa-solid fa-magnifying-glass"></i>
         </h1>
-        <h2 class="text-lg text-black mb-8 text-center font-light">Silahkan masukkan kode unik Anda untuk konfirmasi apakah nama
+        <h2 class="text-lg text-black mb-8 text-center font-light">Silahkan masukkan kode unik Anda untuk konfirmasi
+            apakah nama
             Anda tersedia</h2>
         <form method="GET" action="" class="flex flex-col md:flex-row gap-4 justify-center items-center">
             <input type="text" name="cari" placeholder="Masukkan kode unik Anda..."
@@ -185,8 +187,55 @@ if(isset($_SESSION['login'])){
         <?php include("includes/search.php"); ?>
     </section>
 
+    <section id="galeri" class="py-16 bg-[#EDEDED]">
+        <h1 class="text-4xl font-bold text-[#74583E] mb-6 text-center" style="font-family: 'Great Vibes', cursive;">
+            Galeri Foto
+        </h1>
+        <p class="text-sm text-black text-center font-medium mb-10">
+            Berikut adalah beberapa momen indah yang telah kami abadikan.
+        </p>
+
+        <!-- Wrapper dengan padding & lebar maksimal -->
+        <div class="px-4 md:px-10 max-w-screen-xl mx-auto overflow-hidden w-full">
+            <!-- Track -->
+            <div class="galeri-track flex gap-3 animate-scroll-loop">
+                <?php
+                $folder = 'public/img/galeri';
+                $files = glob($folder . '/*.{jpg,jpeg,png,gif,webp}', GLOB_BRACE);
+
+                // Duplikasi 3x untuk infinite loop seamless
+                for ($i = 0; $i < 3; $i++) {
+                    foreach ($files as $file) {
+                        $basename = basename($file);
+                        echo '<div class="w-1/4 flex-shrink-0">';
+                        echo '<img src="' . $folder . '/' . $basename . '" class="w-full h-48 object-cover rounded-md shadow-md" alt="Galeri">';
+                        echo '</div>';
+                    }
+                }
+                ?>
+            </div>
+        </div>
+
+        <!-- CSS untuk animasi scroll -->
+        <style>
+            .animate-scroll-loop {
+                animation: scroll-left 60s linear infinite;
+                width: max-content;
+                display: flex;
+            }
+            @keyframes scroll-left {
+                0% {
+                    transform: translateX(0%);
+                }
+                100% {
+                    transform: translateX(-33.333%);
+                }
+            }
+        </style>
+    </section>
+
     <!-- Cerita Kami -->
-    <section id="cerita" class="py-16 px-8 mx-auto scroll-mt-20 bg-[#EDEDED]">
+    <section id="cerita" class="py-16 px-8 mx-auto scroll-mt-20">
         <h1 class="text-4xl font-bold text-[#74583E] mb-6 text-center" style="font-family: 'Great Vibes', cursive;">
             Cerita Kami
         </h1>
