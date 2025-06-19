@@ -27,7 +27,7 @@
             <ul id="mobile-menu"
                 class="hidden w-full md:flex md:w-auto flex-col md:flex-row items-center gap-4 mt-4 md:mt-0 font-medium">
                 <!-- Menu Links saat sudah login -->
-                <?php if (isset($_SESSION['login']) && $_SESSION['login'] === true && isset($_SESSION['pdf_path'])): ?>
+                <?php if (isset($_SESSION['login']) && $_SESSION['login'] && isset($_SESSION['pdf_path'])): ?>
                     <li><a href="#undangan"
                             class="nav-link block py-2 px-4 text-gray-700 hover:text-[#74583E] md:p-0">Undangan</a></li>
                     <li><a href="#acara" class="nav-link block py-2 px-4 text-gray-700 hover:text-[#74583E] md:p-0">Jadwal &
@@ -36,14 +36,17 @@
                             class="nav-link block py-2 px-4 text-gray-700 hover:text-[#74583E] md:p-0">Konfirmasi
                             Kehadiran</a></li>
                     <li class="nav-item">
-                        <a href="public/<?= htmlspecialchars($_SESSION['pdf_path']) ?>" class="nav-link text-danger"
+                        <a href="public/<?= htmlspecialchars($_SESSION['pdf_path']) ?>"
+                            class="py-2 px-4 bg-rose-500 text-white rounded-lg hover:bg-rose-600 transition duration-200 shadow-md hover:shadow-lg flex items-center gap-2"
                             download>
-                            <i class="bi bi-file-earmark-pdf-fill"></i> Download PDF
+                            <i class="fas fa-file-pdf text-white"></i>
+                            <span>Download PDF</span>
                         </a>
                     </li>
+
                     <li>
                         <a href="logout.php"
-                            class="py-2 px-4 bg-rose-500 text-white rounded-lg hover:bg-rose-600 transition duration-200 shadow-md hover:shadow-lg">
+                            class="py-2 px-4 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition duration-200 shadow-md hover:shadow-lg">
                             Logout
                         </a>
                     </li>
