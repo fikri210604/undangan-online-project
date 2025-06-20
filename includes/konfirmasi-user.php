@@ -21,6 +21,7 @@ $waktu_konfirmasi = date("Y-m-d H:i:s");
 $user = $conn->query("SELECT * FROM users WHERE id = $user_id")->fetch_assoc();
 $user_email = $user['email'] ?? '';
 
+var_dump($_POST);
 // Mengambil Kode unik dari user
 $stmtKodeUnik = $conn->prepare("SELECT kode_unik FROM users WHERE email = ?");
 $stmtKodeUnik->bind_param("s", $user_email);
@@ -121,18 +122,17 @@ if ($status_konfirmasi === 'hadir') {
     $qr_code_path = generate_qr_code($nomor_kursi);
     $pdf_path = generate_undangan_pdf($nomor_kursi, $qr_code_path);
 
-    $_SESSION['pdf_path'] = str_replace('../public/', '', $pdf_path);
-    $_SESSION['qr_code_path'] = str_replace('../public/', '', $qr_code_path);
-    $_SESSION['success'] = true;
-
     // Update kehadiran
     $stmt = $conn->prepare("UPDATE konfirmasi SET status = ?, waktu_konfirmasi = ?, nomor_kursi = ?, jumlah_kursi = ?, qr_code_path = ?, pdf_path = ?, whishes = ? WHERE user_id = ?");
     $status_konfirmasi = 'Hadir';
-    $stmt->bind_param("sssissi", $status_konfirmasi, $waktu_konfirmasi, $nomor_kursi, $jumlah_kursi, $qr_code_path, $pdf_path, $whishes, $user_id);
-    $stmt->bind_param("ssssssi", $status_konfirmasi, $waktu_konfirmasi, $nomor_kursi, $qr_code_path, $pdf_path, $whishes, $user_id);
+    $stmt->bind_param("sssisssi", $status_konfirmasi, $waktu_konfirmasi, $nomor_kursi, $jumlah_kursi, $qr_code_path, $pdf_path, $whishes, $user_id);
     $stmt->execute();
 
-    header("Location: ../landing.php?status=success&message=Konfirmasi berhasil!&pdf_file=" . urlencode($pdf_path));
+    $_SESSION['pdf_path'] = str_replace('../public/', '', $pdf_path);
+    $_SESSION['qr_code_path'] = str_replace('../public/', '', $qr_code_path);
+    $_SESSION['success'] = true;
+    
+    header("Location: ../landing.php");
     exit;
 
 } elseif ($status_konfirmasi === 'tidak') {
