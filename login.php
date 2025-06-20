@@ -1,5 +1,13 @@
-<?php
+<?php include 'asset/navbar.php';
 session_start();
+if (isset($_SESSION['login'])) {
+    if ($_SESSION['role'] === 'admin') {
+        header("Location: admin/dashboard.php");
+    } else {
+        header("Location: landing.php");
+    }
+    exit;
+}
 ?>
 <!DOCTYPE html>
 <html lang="id">
