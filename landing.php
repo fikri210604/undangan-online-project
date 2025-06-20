@@ -1,8 +1,9 @@
 <?php
-session_start();
-include 'asset/navbar.php';
 include_once 'includes/db.php';
 
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 $nama = '';
 if (isset($_SESSION['user_id'])) {
     $user_id = $_SESSION['user_id'];
@@ -11,6 +12,20 @@ if (isset($_SESSION['user_id'])) {
         $nama = $row['nama'];
     }
 }
+
+// Mengambil PDF langsung dari database untuk ditampilkan pada navbar
+$pdf_path = '';
+if (isset($_SESSION['login']) && $_SESSION['login'] === true && isset($_SESSION['user_id'])) {
+    $user_id = $_SESSION['user_id'];
+    $query = $conn->query("SELECT pdf_path FROM konfirmasi WHERE user_id = $user_id AND status = 'Hadir' LIMIT 1");
+    if ($query && $row = $query->fetch_assoc()) {
+        if (!empty($row['pdf_path'])) {
+            $pdf_path = str_replace('../public/', '', $row['pdf_path']);
+        }
+    }
+}
+
+include 'asset/navbar.php';
 ?>
 
 <!DOCTYPE html>
