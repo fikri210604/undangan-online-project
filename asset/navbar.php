@@ -27,15 +27,15 @@
                 <li><a href="#acara" class="nav-link block py-2 px-4 text-gray-700 hover:text-[#74583E] md:p-0">Jadwal & Lokasi</a></li>
                 <li><a href="#konfirmasi" class="nav-link block py-2 px-4 text-gray-700 hover:text-[#74583E] md:p-0">Konfirmasi Kehadiran</a></li>
 
-                <?php if (isset($_SESSION['pdf_path']) && $_SESSION['pdf_path']): ?>
-                <li class="nav-item">
-                    <a href="public/<?= htmlspecialchars($_SESSION['pdf_path']) ?>"
-                        class="py-2 px-4 bg-rose-500 text-white rounded-lg hover:bg-rose-600 transition duration-200 shadow-md hover:shadow-lg flex items-center gap-2"
-                        download>
-                        <i class="fas fa-file-pdf text-white"></i>
-                        <span>Download PDF</span>
-                    </a>
-                </li>
+                 <?php if (!empty($pdf_path)): ?>
+                    <li>
+                        <a href="public/<?= htmlspecialchars($pdf_path) ?>"
+                            class="py-2 px-4 bg-rose-500 text-white rounded-lg hover:bg-rose-600 transition duration-200 shadow-md hover:shadow-lg flex items-center gap-2"
+                            download>
+                            <i class="fas fa-file-pdf text-white"></i>
+                            <span>Download PDF</span>
+                        </a>
+                    </li>
                 <?php endif; ?>
 
                 <li>
